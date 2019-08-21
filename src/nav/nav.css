@@ -1,0 +1,30 @@
+.app__nav {
+    height: 45px;
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content:  space-between;
+    align-items: center;
+  }
+  
+  .app-title {
+    text-align: left;
+    font-size: 1.5em;
+    margin: 0 0 0 12px;
+  }
+  
+  .nav-list {
+   list-style-type: none;
+   padding: 12px;
+  }
+  
+  .nav-list > li {
+    display: inline-block;
+    margin: 0 0 0 12px;
+  }
+  
+  .nav-list > li > a {
+    font-weight: bold;
+    text-decoration: none;
+    color: darkslategray;
+  }

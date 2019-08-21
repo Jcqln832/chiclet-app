@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "alias": "chiclet",
     "name": "chiclet-app",
     "routes": [
         {
