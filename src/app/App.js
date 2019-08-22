@@ -1,29 +1,41 @@
 import React, { Component } from 'react';
 import { Route, Link, withRouter } from 'react-router-dom';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../apiContext';
 // import config from '../config';
 // import NavError from '../ErrorBoundaries/NavError';
 // import NoteError from '../ErrorBoundaries/NoteError';
 import AppNav from '../nav/nav';
-import Year from '../year/year';
+import Landing from '../landing/landing';
+import Months from '../months/months';
 import './app.css';
 
 
-const ITEMS = {
-  "January": [
-    "first item",
-    "second item"
-  ],
-  "February": [
-    "first item",
-    "second item"
-  ],
-  "March": [
-    "first item",
-    "second item"
-  ]
-};
+const ITEMS = [
+  {
+    id: 1,
+    item: "First Item",
+    author: "reggie",
+    month: "January",
+    index: 201901
+  },
+  {
+    id: 3,
+    item: "Another Item",
+    author: "reggie",
+    month: "January",
+    index: 201901
+  },
+  {
+    id: 2,
+    item: "Second Item",
+    author: "reggie",
+    month: "February",
+    index: 201902
+  },
+
+];
 
 const initYear = new Date().getFullYear()
 
@@ -31,7 +43,8 @@ class App extends Component {
   state = {
     items: ITEMS,
     completed: false,
-    year: initYear
+    year: initYear,
+    isLoggedIn: false
   }
 
   // componentDidMount() {
@@ -89,42 +102,48 @@ class App extends Component {
       items: this.state.items,
       completed: this.state.completed,
       year: this.state.year,
+      isLoggedIn: this.state.isLoggedIn,
       addItem: this.addItem,
       deleteItem: this.deleteItem,
       incrementYear: this.incrementYear,
       decrementYear: this.decrementYear,
       doRedirect: this.doRedirect
     }
-    
+
+    const prevButton = value.year > new Date().getFullYear();
+  
     return (
 
     <apiContext.Provider value={value}>
       <div className='App'>
         <nav className='app__nav'>
-          <h1 className="app-title">Chiclet Yearly Planner</h1>
+          <h1 className="app-title"><span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"}/></span>Chiclet Yearly Planner</h1>
           {/* <NavError> */}
             <Route 
                 path='/' 
-                component = {AppNav}
+                render = {() =>
+                  <AppNav isLoggedIn = {value.isLoggedIn} />
+                }
             />
           {/* </NavError> */}
         </nav>
         <main className='app__main'>
-          {/* <NoteError> */
+          {/* <NoteError> */ }
+            <Route
+              exact path='/'
+              component = {Landing}
+            />
           <Route
-            path='/'
-            component = {Year}
-          />
-          /*
-          <Route
-            exact path='/'
-            render ={(routerProps) =>
-              <NoteListMain 
-                notes = {value.notes}
+            path='/months'
+            render ={() =>
+              <Months 
+                items= {value.items} 
+                year={value.year}
+                prevButton = {prevButton}
               />
             }
           />
-          <Route
+          {/* <Route
             path='/folder/:folderId'
             render ={(routerProps) =>
               <NoteListMain 
@@ -159,7 +178,7 @@ class App extends Component {
               />
             }
           />
-          </NoteError> */}
+          </NoteError> */} 
         </main>
       </div>
       </apiContext.Provider>

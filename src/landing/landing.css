@@ -1,0 +1,77 @@
+.container--intro {
+    line-height: 1.5;
+    font-size: 18px;
+    flex-basis: 100%;
+  }
+  
+  .intro {
+    margin: 0 auto;
+  }
+  
+  .intro > h3 {
+    margin-top: 50px;
+  }
+
+  .intro > ul {
+    padding-left: 20px;
+  }
+  
+  .container--btn {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 75px 0 75px 0;
+  }
+  
+  .btn {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: lightgray;
+    padding: 12px 24px;
+    color:black;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    flex-basis: 1;
+  }
+  
+  .container--grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: -1em 0 0 -1em;
+    justify-content: center;
+  }
+  
+  .container--month {
+    display: block;
+    align-self: center;
+    padding: 1em 0 0 1em;
+    flex-basis: 100%;
+  }
+
+  .month {
+    border: 2px solid rgb(212, 212, 212);
+    padding: 1em;
+    min-height: 250px;
+  }
+
+  /**** MEDIA QUERIES ****/
+
+@media screen and (min-width: 768px) {
+  .intro {
+    max-width: 700px;
+  }
+  .container--month {
+    flex-basis: 40%;
+  }
+  .container--1month {
+    flex-basis: 50%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .container--month {
+    flex-basis: 30%;
+  }
+}
