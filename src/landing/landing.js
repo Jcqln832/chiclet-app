@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import './landing.css'
+import '../months/months.css'
 
 export default function Landing(props) {
 

@@ -35,7 +35,7 @@
     flex-basis: 1;
   }
   
-  .container--grid {
+  /* .container--grid {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -48,13 +48,14 @@
     align-self: center;
     padding: 1em 0 0 1em;
     flex-basis: 100%;
+    text-decoration: none;
   }
 
   .month {
     border: 2px solid rgb(212, 212, 212);
     padding: 1em;
     min-height: 250px;
-  }
+  } */
 
   /**** MEDIA QUERIES ****/
 
@@ -62,16 +63,16 @@
   .intro {
     max-width: 700px;
   }
-  .container--month {
+  /* .container--month {
     flex-basis: 40%;
   }
   .container--1month {
     flex-basis: 50%;
-  }
+  } */
 }
 
-@media screen and (min-width: 1200px) {
+/* @media screen and (min-width: 1200px) {
   .container--month {
     flex-basis: 30%;
   }
-}
+} */

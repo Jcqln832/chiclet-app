@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { Route, Link, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../apiContext';
 // import config from '../config';
 // import NavError from '../ErrorBoundaries/NavError';
 // import NoteError from '../ErrorBoundaries/NoteError';
+import MONTHS from '../monthList';
 import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
 import Months from '../months/months';
+import SingleMonth from '../month/month';
 import './app.css';
 
 
@@ -34,8 +36,9 @@ const ITEMS = [
     month: "February",
     index: 201902
   },
-
 ];
+
+console.log(MONTHS);
 
 const initYear = new Date().getFullYear()
 
@@ -96,7 +99,6 @@ class App extends Component {
     })
   }
 
-
   render() {
     const value = {
       items: this.state.items,
@@ -143,24 +145,21 @@ class App extends Component {
               />
             }
           />
-          {/* <Route
-            path='/folder/:folderId'
-            render ={(routerProps) =>
-              <NoteListMain 
-                notes = {value.notes.filter(note => note.folderId === Number(routerProps.match.params.folderId))}
-              />
-            }
-          />
           <Route
-            path='/note/:noteId'
-            render ={(routerProps) =>
-              <NotePageMain 
-                note = {value.notes.find(note => note.id === Number(routerProps.match.params.noteId))}
+            path='/month/:monthId'
+            render ={(routerProps) => {
+              const monthIndex = routerProps.match.params.monthId;
+              const month = MONTHS.find(month => month.id === monthIndex.slice(4))
+              return (
+              <SingleMonth 
+                monthName = {month.name}
+                monthItems = {value.items.filter(item => item.index === Number(routerProps.match.params.monthId))}
               />
-            }
+              )
+            }}
           />
-          <Route 
-            path='/add-folder'
+          {/* <Route 
+            path='/edit-item'
             render ={(routeProps) =>
               <AddFolder
                 {...routeProps}
@@ -169,7 +168,7 @@ class App extends Component {
             }
           />
           <Route
-            path='/add-note'
+            path='/register'
             render = {(routeProps) =>
               <AddNote
                 {...routeProps}
@@ -177,8 +176,8 @@ class App extends Component {
                 addNote={value.addNote}
               />
             }
-          />
-          </NoteError> */} 
+          /> */}
+          {/* </NoteError> */}
         </main>
       </div>
       </apiContext.Provider>

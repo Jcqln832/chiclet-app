@@ -1,0 +1,39 @@
+.month--single {
+    padding: 30px;
+    min-height: 350px;
+    position: relative;
+    margin-top: 35px;
+  }
+  
+  .list--single {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .list--single > li {
+    padding: 4px;
+  }
+  
+  .list--single > li:nth-child(odd) {
+    background-color: lightgrey;
+  }
+  
+  .container--item {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .item__options {
+    padding: 0px 6px;
+  }
+  
+  .btn-add {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    right: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    background-color: #ecebeb;
+    padding: 12px 0px;
+  }

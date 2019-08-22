@@ -1,21 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 
-export default function MonthItems(props) {
+export default function SingleMonthItems(props) {
     console.log(props);
     return (
         <>
-        {props.gridItems.map(item =>
+        {props.monthItems.map(item =>
              <li key={item.id}>{item.item}</li>
         )}
         </>
     )
 }
 
-MonthItems.defaultProps = {
-    gridItems: []
+SingleMonthItems.defaultProps = {
+    monthItems: []
   };
   
-MonthItems.propTypes = {
-   gridItems: PropTypes.array
+SingleMonthItems.propTypes = {
+   monthItems: PropTypes.array
   };

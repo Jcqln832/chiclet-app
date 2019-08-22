@@ -66,14 +66,17 @@ export default function Months(props) {
                 <Year prevButton = {props.prevButton} />
                 <div className="container--grid">
                     {months.map(month =>
-                        <section className="container--month" key={month.id}>
+                    <Link to={`/month/${Number(value.year + month.id)}`} className="container--month" key={month.id}>
+                        <section>
                             <div className="month">
                                 <h2 className="month__title">{month.name}</h2>
                                 <ul>
-                                    {<MonthItems gridItems = {props.items.filter(item => Number(item.index) === Number(value.year + month.id))}/> }
+                                    {<MonthItems gridItems = {props.items.filter(item => Number(item.index) === Number(value.year + month.id))}
+                                    /> }
                                 </ul>
                             </div>  
                         </section>
+                    </Link>
                     )}
                 </div>
             </>
@@ -83,8 +86,3 @@ export default function Months(props) {
     )
 }
 
-// props.year + month.id
-
-// item.index= year+month
-// const monthlyItems = items.find(item => 
-//     item.index === year + month.id )
