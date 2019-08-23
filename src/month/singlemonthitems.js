@@ -1,4 +1,7 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
 
 export default function SingleMonthItems(props) {
@@ -6,7 +9,12 @@ export default function SingleMonthItems(props) {
     return (
         <>
         {props.monthItems.map(item =>
-             <li key={item.id}>{item.item}</li>
+             <li key={item.id}>
+                <Link to={`/edit/${item.id}`}>
+                    <button className="edit-btn"><FontAwesomeIcon icon={faEdit} size={"lg"}/></button>
+                </Link>
+                {item.item}
+             </li>
         )}
         </>
     )

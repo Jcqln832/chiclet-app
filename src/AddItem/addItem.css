@@ -1,0 +1,40 @@
+.form--add {
+    position: absolute;
+    bottom: 0;
+    left: 30px;
+    right: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    padding: 12px 0px;
+}
+
+
+.form--add__label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+    padding-left: 6px;
+}
+
+.form--add__input {
+    width: 100%;
+    margin-bottom: 6px;
+    font-size: 1em;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 6px;
+    background-color: #ecebeb;
+}
+
+.form--add__submit {
+    position: absolute;
+    right: 0;
+    top: 34px;
+    height: 28px;
+    border: 0px solid transparent;
+    background: #b5b5b5;
+    border-left: 1px solid;
+    font-size: 14px;
+}

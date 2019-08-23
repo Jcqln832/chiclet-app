@@ -38,8 +38,6 @@ const ITEMS = [
   },
 ];
 
-console.log(MONTHS);
-
 const initYear = new Date().getFullYear()
 
 class App extends Component {
@@ -80,11 +78,11 @@ class App extends Component {
     this.setState({
       items: [...this.state.items, item]
     })
-    console.log(this.state.items);
+    // console.log(this.state.items);
   }
-
+ 
   doRedirect = (itemId) => {
-    this.props.history.push(`/`)
+    this.props.history.push(`/months`);
   }
 
   incrementYear = () => {
@@ -102,8 +100,8 @@ class App extends Component {
   render() {
     const value = {
       items: this.state.items,
-      completed: this.state.completed,
       year: this.state.year,
+      completed: this.state.completed,
       isLoggedIn: this.state.isLoggedIn,
       addItem: this.addItem,
       deleteItem: this.deleteItem,
@@ -151,15 +149,19 @@ class App extends Component {
               const monthIndex = routerProps.match.params.monthId;
               const month = MONTHS.find(month => month.id === monthIndex.slice(4))
               return (
-              <SingleMonth 
+              <SingleMonth
+                doRedirect = {value.doRedirect}
+                addItem = {value.addItem}
+                year = {value.year}
                 monthName = {month.name}
+                monthIndex = {monthIndex}
                 monthItems = {value.items.filter(item => item.index === Number(routerProps.match.params.monthId))}
               />
               )
             }}
           />
           {/* <Route 
-            path='/edit-item'
+            path='/edit/:itemId'
             render ={(routeProps) =>
               <AddFolder
                 {...routeProps}

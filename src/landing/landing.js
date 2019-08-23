@@ -19,8 +19,8 @@ export default function Landing(props) {
                         <li>In the single month view, you can add, edit, or delete items.</li>
                     </ul>
                     <div className="container--btn">
-                    <Link to="/register" className="btn">Register</Link>
-                    <Link to="/log-in" className="btn" >Log In</Link>
+                    <Link to="/months" className="btn">Register</Link>
+                    <Link to="/months" className="btn" >Log In</Link>
                     </div>  
                 </div>
             </section>  
