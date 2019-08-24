@@ -1,0 +1,35 @@
+.form--edit {
+    position: relative;
+    padding: 12px 0px;
+}
+
+
+.form__label--edit {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 4px;
+    padding-left: 6px;
+}
+
+.form__input--edit {
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 1em;
+    height: 30px;
+    box-sizing: border-box;
+    padding: 6px;
+    background-color: #ecebeb;
+}
+
+.form__submit--edit {
+    position: absolute;
+    right: 0;
+    top: 34px;
+    height: 28px;
+    border: 0px solid transparent;
+    background: #b5b5b5;
+    border-left: 1px solid;
+    font-size: 14px;
+}

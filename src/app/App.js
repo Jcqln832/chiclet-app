@@ -11,6 +11,7 @@ import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
 import Months from '../months/months';
 import SingleMonth from '../month/month';
+import EditItem from '../EditItem/edititem';
 import './app.css';
 
 
@@ -78,7 +79,7 @@ class App extends Component {
     this.setState({
       items: [...this.state.items, item]
     })
-    // console.log(this.state.items);
+    console.log(this.state.items);
   }
  
   doRedirect = (itemId) => {
@@ -145,8 +146,8 @@ class App extends Component {
           />
           <Route
             path='/month/:monthId'
-            render ={(routerProps) => {
-              const monthIndex = routerProps.match.params.monthId;
+            render ={(routeProps) => {
+              const monthIndex = routeProps.match.params.monthId;
               const month = MONTHS.find(month => month.id === monthIndex.slice(4))
               return (
               <SingleMonth
@@ -155,20 +156,21 @@ class App extends Component {
                 year = {value.year}
                 monthName = {month.name}
                 monthIndex = {monthIndex}
-                monthItems = {value.items.filter(item => item.index === Number(routerProps.match.params.monthId))}
+                monthItems = {value.items.filter(item => item.index === Number(routeProps.match.params.monthId))}
               />
               )
             }}
           />
-          {/* <Route 
+          <Route 
             path='/edit/:itemId'
             render ={(routeProps) =>
-              <AddFolder
+              <EditItem
                 {...routeProps}
-                addFolder = {value.addFolder}
+                  item = {value.items.find(item => item.id = routeProps.match.params.itemId)}
               />
             }
           />
+          {/*
           <Route
             path='/register'
             render = {(routeProps) =>

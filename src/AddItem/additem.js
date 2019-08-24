@@ -85,11 +85,11 @@ class AddItem extends Component {
 
    this.props.addItem(
         {
-            id: 1,
+            id: "",
             item: item,
             author: "signedinUser",
             month: month,
-            index: index
+            index: Number(index)
           }
     )
 }
@@ -106,13 +106,13 @@ class AddItem extends Component {
     //   // clear for next entry
     //   this.setState({
     //     item: "",
-    //     }, () => {this.props.addItem(
+    //     }, () => {this.props.addItem(  //add item from database into app state (incudling auto incremented item id#)
     //     {
-    //         // id: 1,
-    //         // item: "First Item",
-    //         // author: "reggie",
-    //         // month: "January",
-    //         // index: 201901
+    //         // id: data.id,
+    //         // item: "data.item",
+    //         // author: "data.author",
+    //         // month: "data.month",
+    //         // index: data.index
     //       },
     //     )}
     //   );

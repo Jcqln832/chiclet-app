@@ -8,12 +8,13 @@ import SingleMonthItems from './singlemonthitems'
 import './month.css'
 
 export default function SingleMonth(props) {
+    console.log(props.monthItems)
   
     return (
         <>
             <div className="container--title">
-            <h2 class="month__year">
-                <span class="arrow-back" onClick={()=>props.doRedirect()}><FontAwesomeIcon icon={faChevronLeft} size={"lg"} /></span>
+            <h2 className="month__year">
+                <span className="arrow-back" onClick={()=>props.doRedirect()}><FontAwesomeIcon icon={faChevronLeft} size={"lg"} /></span>
                 {props.year}
             </h2>
             </div>
