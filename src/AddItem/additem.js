@@ -134,11 +134,11 @@ class AddItem extends Component {
             <form className="form--add" onSubmit={e => this.handleSubmit(e)}>
             
                 <div className="field">
-                    <label class="form--add__label"htmlFor="item-input">Add an item</label>
-                    <input class="form--add__input" type="text" name="name" id="item-input" aria-label="new month item" aria-required="true" onChange={e => this.itemChanged(e.target.value)}/>
+                    <label className="form--add__label"htmlFor="item-input">Add an item</label>
+                    <input className="form--add__input" type="text" name="name" id="item-input" aria-label="new month item" aria-required="true" onChange={e => this.itemChanged(e.target.value)}/>
                     {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
                 </div>
-                <button class="form--add__submit" type="submit">
+                <button className="form--add__submit" type="submit">
                  + Save
                 </button>
             </form>

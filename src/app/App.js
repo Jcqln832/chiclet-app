@@ -12,6 +12,8 @@ import Landing from '../landing/landing';
 import Months from '../months/months';
 import SingleMonth from '../month/month';
 import EditItem from '../EditItem/edititem';
+// import Registration from '../Register/register';
+import Login from '../Login/login';
 import './app.css';
 
 
@@ -24,19 +26,32 @@ const ITEMS = [
     index: 201901
   },
   {
-    id: 3,
-    item: "Another Item",
-    author: "reggie",
-    month: "January",
-    index: 201901
-  },
-  {
     id: 2,
     item: "Second Item",
     author: "reggie",
     month: "February",
     index: 201902
   },
+  {
+    id: 3,
+    item: "Another Item",
+    author: "reggie",
+    month: "January",
+    index: 201901
+  },
+];
+
+const USERS = [
+  {
+    id: 111,
+    user_name: "harryP",
+    password: "fluffy",
+  },
+  {
+    id: 222,
+    user_name: "RonW",
+    password: "wormtail"
+  }
 ];
 
 const initYear = new Date().getFullYear()
@@ -81,6 +96,14 @@ class App extends Component {
     })
     console.log(this.state.items);
   }
+
+  updateItem = updatedItem => {
+    this.setState({
+      items: this.state.items.map(item =>
+        (item.id !== updatedItem.id) ? item : updatedItem
+      )
+    })
+  }
  
   doRedirect = (itemId) => {
     this.props.history.push(`/months`);
@@ -98,6 +121,13 @@ class App extends Component {
     })
   }
 
+  setLoggedIn = (bool) => {
+    console.log(bool);
+    this.setState({
+      isLoggedIn: bool
+    })
+  }
+
   render() {
     const value = {
       items: this.state.items,
@@ -106,6 +136,7 @@ class App extends Component {
       isLoggedIn: this.state.isLoggedIn,
       addItem: this.addItem,
       deleteItem: this.deleteItem,
+      updateItem: this.updateItem,
       incrementYear: this.incrementYear,
       decrementYear: this.decrementYear,
       doRedirect: this.doRedirect
@@ -114,26 +145,24 @@ class App extends Component {
     const prevButton = value.year > new Date().getFullYear();
   
     return (
-
     <apiContext.Provider value={value}>
       <div className='App'>
         <nav className='app__nav'>
           <h1 className="app-title"><span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"}/></span>Chiclet Yearly Planner</h1>
           {/* <NavError> */}
             <Route 
-                path='/' 
-                render = {() =>
-                  <AppNav isLoggedIn = {value.isLoggedIn} />
-                }
+              path='/' 
+              render = {() =>
+                <AppNav isLoggedIn = {value.isLoggedIn} />
+              }
             />
           {/* </NavError> */}
         </nav>
         <main className='app__main'>
-          {/* <NoteError> */ }
-            <Route
-              exact path='/'
-              component = {Landing}
-            />
+          <Route
+            exact path='/'
+            component = {Landing}
+          />
           <Route
             path='/months'
             render ={() =>
@@ -156,38 +185,43 @@ class App extends Component {
                 year = {value.year}
                 monthName = {month.name}
                 monthIndex = {monthIndex}
-                monthItems = {value.items.filter(item => item.index === Number(routeProps.match.params.monthId))}
+                monthItems = {value.items.filter(item => item.index === Number(monthIndex))}
               />
               )
             }}
           />
           <Route 
             path='/edit/:itemId'
-            render ={(routeProps) =>
+            render ={(routeProps) => 
               <EditItem
-                {...routeProps}
-                  item = {value.items.find(item => item.id = routeProps.match.params.itemId)}
+                item = {this.state.items.find(item => item.id === Number(routeProps.match.params.itemId))}
+                updateItem = {value.updateItem}
               />
             }
           />
-          {/*
-          <Route
+          {/* <Route
             path='/register'
             render = {(routeProps) =>
-              <AddNote
+              <Registration
                 {...routeProps}
-                folders={value.folders}
-                addNote={value.addNote}
               />
             }
-          /> */}
-          {/* </NoteError> */}
+          />*/
+          <Route
+          path='/login'
+          render = {(routeProps) =>
+            <Login
+              {...routeProps}
+              setLoggedIn = {this.setLoggedin}
+              doRedirect = {this.doRedirect}
+            />
+          } 
+        />}
         </main>
       </div>
       </apiContext.Provider>
     )
   }
 }
-
 
 export default withRouter(App);  
