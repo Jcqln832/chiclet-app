@@ -22,13 +22,13 @@ class EditItem extends Component {
     }
   }
 
-  doRedirect = (itemId) => {
+  doRedirect = () => {
     this.props.history.push(`/month/${this.props.item.index}`);
   }
 
   itemChanged(item) {
     this.setState({
-      item: item})
+      item: item })
       console.log(this.state.item)
   }
 
@@ -43,6 +43,13 @@ class EditItem extends Component {
     } else {
         return "";
     }
+  }
+
+  handleClickDelete = e => {
+    e.preventDefault()
+    const itemId = this.props.item.id
+    this.props.deleteItem(itemId)
+    this.doRedirect()
   }
 
   handleSubmit(e) {
@@ -147,14 +154,19 @@ class EditItem extends Component {
         <div className="month month--single">
         <h2 className="month__title">Update Item</h2>
             <form className="form--edit" onSubmit={e => this.handleSubmit(e)}>
-                  <label className="form__label--edit" htmlFor="edit-input">Edit:</label>
-                  <input className="form__input--edit" type="text" name="update" id="edit-input" defaultValue={this.state.item.item} onChange={e => this.itemChanged(e.target.value)}/>
-                  {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
-                  {/* <label fsor="complete-input">Complete</label>
-                  <input type="radio" name="edit" id="complete"/> */}
-                  <button className="form__submit--edit" type="submit">Done</button>
+              <label className="form__label--edit" htmlFor="edit-input">Edit:</label>
+              <input className="form__input--edit" type="text" name="update" id="edit-input" defaultValue={this.state.item.item} onChange={e => this.itemChanged(e.target.value)}/>
+              {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
+              <button className="form__submit--edit" type="submit">Done</button>
             </form>
             <hr></hr>
+            <button className="button--delete" type="button" onClick={this.handleClickDelete}>Delete</button>
+        
+
+
+              {/* <label fsor="complete-input">Complete</label>
+                  <input type="radio" name="edit" id="complete"/> */}
+            
         </div>  
       </section>
       </div>

@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import config from '../config';
 import {withRouter} from 'react-router-dom';
 import ValidationError from '../ValidationError';
+import apiContext from '../apiContext';
 import PropTypes from 'prop-types';
 import './addItem.css'
+import MonthItems from '../months/monthitems';
 
 class AddItem extends Component {
+  static contextType = apiContext;
   constructor(props) {
     super(props);
-    //capture form inputs here to make a controlled form
+    // capture form inputs here to make a controlled form
     this.state = {
       item: "",
       itemValid: false,
@@ -23,7 +26,7 @@ class AddItem extends Component {
     this.setState({item})
   }
 
-  // Validate item not empty and not too long. Return a message if so
+  // Validate item not empty and not too long. Return a message if so.
   validateItem(fieldValue) {
     fieldValue = fieldValue.trim();
     if (fieldValue.length === 0) {
@@ -48,49 +51,49 @@ class AddItem extends Component {
   validateForm(item) {
    const itemMessage =  this.validateItem(item);
 
-    this.setState({
-      validationMessages: {
-        item: itemMessage,
-      },
-      itemValid: !itemMessage,
-    }, this.formValid );
-  }
+  //   this.setState({
+  //     validationMessages: {
+  //       item: itemMessage,
+  //     },
+  //     itemValid: !itemMessage,
+  //   }, this.formValid );
+  // }
 
-  formValid() {
-    this.setState({
-      formValid: (this.state.itemValid)
-    }, () => this.doFetch());
-  }
+  // formValid() {
+  //   this.setState({
+  //     formValid: (this.state.itemValid)
+  //   }, () => this.doFetch());
+  // }
 
-  doFetch() {
-    const url = `${config.API_ENDPOINT}/month/:monthId`;
-    const item = this.state.item;
+  // doFetch() {
+  //   const url = `${config.API_ENDPOINT}/month/:monthId`;
+    // const item = this.state.item;
     const month= this.props.month;
     const index = this.props.monthIndex
 
-    if(this.state.formValid) {
-      console.log(this.state.formValid);
-    const options = {
-      method: 'POST',
-      body: JSON.stringify({
-          item: item,
-          month: month,
-          index: index
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      }
-    }
-    console.log(options)
+  //   if(this.state.formValid) {
+  //     console.log(this.state.formValid);
+  //   const options = {
+  //     method: 'POST',
+  //     body: JSON.stringify({
+  //         item: item,
+  //         month: month,
+  //         index: index
+  //     }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     }
+  //   }
+  //   console.log(options)
 
-   this.props.addItem(
-        {
-            id: "",
-            item: item,
-            author: "signedinUser",
-            month: month,
-            index: Number(index)
-          }
+    this.props.addItem(
+      {
+        id: this.context.items.length + 1,
+        item: item,
+        author: "signedinUser",
+        month: month,
+        index: Number(index)
+      }
     )
 }
 
@@ -124,7 +127,7 @@ class AddItem extends Component {
     //   });
     // });
 //   }
-}
+// }
 
   render () {
     const error = this.state.error ? <div className="error">{this.state.error}</div> : "";

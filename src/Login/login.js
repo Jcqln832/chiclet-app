@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
+// import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
 // import TokenService from '../../services/token-service'
 // import AuthApiService from '../../services/auth-api-service'
 // import { Button, Input } from '../Utils/Utils'
+import './login.css'
 
 export default class LoginForm extends Component {
   static defaultProps = {
@@ -32,13 +33,18 @@ export default class LoginForm extends Component {
 //   }
 
 handleSubmit = ev =>  {
+    ev.preventDefault()
     const { user_name, password } = ev.target
-    const userValid = this.props.users.find(user => user.user_name === user_name)
-    const pwValid = this.props.users.find(user => user.password === password)
+    console.log(user_name);
+    const userValid = this.props.users.find(user => user.user_name === user_name.value)
+    console.log(userValid)
+    const pwValid = this.props.users.find(user => user.password === password.value)
+    console.log(pwValid)
+    console.log('handlesubmit ran!')
     if(userValid && pwValid) {
         this.setState({
             error: null
-          })
+        })
         this.props.setLoggedIn(true)
         this.props.doRedirect()
     } else {
@@ -52,40 +58,44 @@ handleSubmit = ev =>  {
   render() {
     const { error } = this.state
     return (
-      <form
-        className='LoginForm'
-        // onSubmit={this.handleSubmitJwtAuth}
-        onSubmit = {this.handleSubmit}
-      >
-        <div role='alert'>
-          {error && <p className='red'>{error}</p>}
+        <>
+        <header role="banner">
+            <h2>Sign In</h2>
+        </header>
+        <div className="container--grid">
+            <section className="container--form">
+                <form
+                    className='entry-form'
+                    // onSubmit={this.handleSubmitJwtAuth}
+                    onSubmit = {this.handleSubmit}
+                >
+                    <div role='alert'>
+                        {error && <p className='red'>{error}</p>}
+                    </div>
+                    <div className='fields'>
+                        <label htmlFor='name-input'>User name</label>
+                        <input
+                        className="entry-form__input"
+                        type="text"
+                        required
+                        name='user_name'
+                        id='name-input'>
+                        </input>
+            
+                        <label htmlFor='pw-input'>Password</label>
+                        <input 
+                        className="entry-form__input"
+                        required
+                        name='password'
+                        type='password'
+                        id='pw-input'>
+                        </input>
+                    </div>
+                    <button className="entry-form__submit" type='submit'>Log In</button>
+                </form>
+            </section>
         </div>
-        <div className='user_name'>
-          <label htmlFor='LoginForm__user_name'>
-            User name
-          </label>
-          <input
-          type="text"
-            required
-            name='user_name'
-            id='LoginForm__user_name'>
-          </input>
-        </div>
-        <div className='password'>
-          <label htmlFor='LoginForm__password'>
-            Password
-          </label>
-          <input
-            required
-            name='password'
-            type='password'
-            id='LoginForm__password'>
-          </input>
-        </div>
-        <button type='submit'>
-          Login
-        </button>
-      </form>
+        </>
     )
   }
 }

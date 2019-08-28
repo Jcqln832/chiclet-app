@@ -59,6 +59,7 @@ const initYear = new Date().getFullYear()
 class App extends Component {
   state = {
     items: ITEMS,
+    users: USERS,
     completed: false,
     year: initYear,
     isLoggedIn: false
@@ -131,6 +132,7 @@ class App extends Component {
   render() {
     const value = {
       items: this.state.items,
+      users: this.state.users,
       year: this.state.year,
       completed: this.state.completed,
       isLoggedIn: this.state.isLoggedIn,
@@ -178,6 +180,7 @@ class App extends Component {
             render ={(routeProps) => {
               const monthIndex = routeProps.match.params.monthId;
               const month = MONTHS.find(month => month.id === monthIndex.slice(4))
+              console.log(month);
               return (
               <SingleMonth
                 doRedirect = {value.doRedirect}
@@ -196,6 +199,7 @@ class App extends Component {
               <EditItem
                 item = {this.state.items.find(item => item.id === Number(routeProps.match.params.itemId))}
                 updateItem = {value.updateItem}
+                deleteItem = {value.deleteItem}
               />
             }
           />
@@ -212,12 +216,14 @@ class App extends Component {
           render = {(routeProps) =>
             <Login
               {...routeProps}
-              setLoggedIn = {this.setLoggedin}
+              setLoggedIn = {this.setLoggedIn}
               doRedirect = {this.doRedirect}
+              users = {value.users}
             />
           } 
         />}
         </main>
+        <footer role="content-info">Footer</footer>
       </div>
       </apiContext.Provider>
     )
