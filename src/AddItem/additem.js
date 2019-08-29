@@ -134,21 +134,19 @@ class AddItem extends Component {
     const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
     return (
         <section className='AddItem'>
-            {/* { error } */}
-            <form className="form--add" onSubmit={e => this.handleSubmit(e)}>
-            
-                <div className="field">
-                    <label className="form--add__label"htmlFor="item-input">Add an item</label>
-                    <input className="form--add__input" type="text" name="name" id="item-input" aria-label="new month item" aria-required="true" onChange={e => this.itemChanged(e.target.value)}/>
-                    {<ValidationError hasError={!this.state.itemValid} message={this.state.error}/>}
-                </div>
-                <button className="form--add__submit" type="submit">
+          <form className="form--add" onSubmit={e => this.handleSubmit(e)}>
+              <div className="field">
+                <label className="form--add__label"htmlFor="item-input">Add an item</label>
+                <input className="form--add__input" type="text" name="name" id="item-input" aria-label="new month item" aria-required="true" onChange={e => this.itemChanged(e.target.value)}/>
+                {<ValidationError hasError={!this.state.itemValid} message={this.state.error}/>}
+              </div>
+              <button className="form--add__submit" type="submit">
                  + Save
-                </button>
-            </form>
+              </button>
+          </form>
         </section>
     )
- }
+  }
 }
 
 export default withRouter(AddItem);

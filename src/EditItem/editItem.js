@@ -58,8 +58,8 @@ class EditItem extends Component {
     if (updatedItem.item.length === 0) {
         return 'item content is required'
     } else if 
-     (updatedItem.item.length > 150) {
-        return 'item content exceeds length limit (150)'
+     (updatedItem.item.length > 60) {
+        return 'item content exceeds length limit (60)'
     } else {
         return "";
     }
@@ -164,31 +164,33 @@ class EditItem extends Component {
     <>
       <div className="container--title">
         <h2 className="month__year">
-            <span className="arrow-back" onClick={()=>this.doRedirect()}><FontAwesomeIcon icon={faChevronLeft} size={"lg"} /></span>
+            <span className="arrow-back" onClick={()=>this.doRedirect()}>
+              <FontAwesomeIcon icon={faChevronLeft} size={"lg"} />
+            </span>
             {this.props.month}
         </h2>
       </div>
 
       <div className="container--grid">
-      <section className="container--1month">
-        <div className="month month--single">
-        <h2 className="month__title">Update Item</h2>
-            <form className="form--edit" onSubmit={e => this.handleSubmit(e)}>
-              <label className="form__label--edit" htmlFor="edit-input">Edit:</label>
-              <input className="form__input--edit" type="text" name="update" id="edit-input" defaultValue={this.state.item} onChange={e => this.itemChanged(e.target.value)}/>
-              {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
-              {this.checkboxLabel()}
-              <input type="checkbox" id="completed" name="completed" onChange={e => this.completedChanged(e.target.value)}/>
-              <button className="form__submit--edit" type="submit">Done</button>
-            </form>
-            <hr></hr>
-            <button className="button--delete" type="button" onClick={this.handleClickDelete}>Delete</button>
-        </div>  
-      </section>
+        <section className="container--1month">
+          <div className="month month--single">
+            <h2 className="month__title">Update Item</h2>
+              <form className="form--edit" onSubmit={e => this.handleSubmit(e)}>
+                <label className="form__label--edit" htmlFor="edit-input">Edit:</label>
+                <input className="form__input--edit" type="text" name="update" id="edit-input" defaultValue={this.state.item} onChange={e => this.itemChanged(e.target.value)}/>
+                {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
+                {this.checkboxLabel()}
+                <input type="checkbox" id="completed" name="completed" onChange={e => this.completedChanged(e.target.value)}/>
+                <button className="form__submit--edit" type="submit">Done</button>
+              </form>
+              <hr></hr>
+              <button className="button--delete" type="button" onClick={this.handleClickDelete}>Delete</button>
+          </div>  
+        </section>
       </div>
       </>
     )
- }
+  }
 }
 
 export default withRouter(EditItem);
@@ -199,6 +201,8 @@ EditItem.defaultProps = {
   }
 }
 
-// EditItem.propTypes = {
-//   editItem: PropTypes.func.isRequired
-// };
+EditItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  updateItem: PropTypes.func.isRequired,
+  deleteItem: PropTypes.func.isRequired,
+};

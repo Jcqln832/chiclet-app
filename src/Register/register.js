@@ -17,15 +17,14 @@ export default class Registration extends Component {
     console.log(user_name.value);
     const userValid = user_name.value.length < 40
     console.log(userValid)
-    console.log(password.value);
-    console.log(password2.value);
-    console.log(password.value === password2.value)
-    console.log(password.value.length < 40);
-    console.log(password.value.length >= 8);
+    // console.log(password.value);
+    // console.log(password2.value);
+    // console.log(password.value === password2.value)
+    // console.log(password.value.length < 40);
+    // console.log(password.value.length >= 8);
     // pwvalue = password.value === password2.value;
     // pwlength = password.value.length < 40;
     const pwValid = (password.value === password2.value) && (password.value.length < 40) && (password.value.length >= 8) ? true : false
-    
     console.log(pwValid)
     
     if(userValid && pwValid) {
@@ -112,6 +111,7 @@ export default class Registration extends Component {
               id='registrationForm__password2'>
             </input>
             <button className="registrationForm__submit" type='submit'>Register</button>
+            
           </form>
         </section>
       </div>

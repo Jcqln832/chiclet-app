@@ -1,44 +1,44 @@
 .app__nav {
-    height: 45px;
-    background-color: lightgrey;
-    display: flex;
-    flex-direction: row;
-    justify-content:  space-between;
-    align-items: center;
-  }
+  height: 45px;
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: row;
+  justify-content:  space-between;
+  align-items: center;
+}
   
-  .app-title {
-    text-align: left;
-    font-size: 1.35em;
-    margin: 0 0 0 12px;
-  }
+.app-title {
+  text-align: left;
+  font-size: 1.35em;
+  margin: 0 0 0 12px;
+}
 
-  .app-icon {
-    display: inline-block;
-    font-size: 1em;
-    margin-right: 12px;
-  }
+.app-icon {
+  display: inline-block;
+  font-size: 1em;
+  margin-right: 12px;
+}
   
-  .nav-list {
-   list-style-type: none;
-   padding: 12px;
-  }
+.nav-list {
+  list-style-type: none;
+  padding: 12px;
+}
   
-  .nav-list > li {
-    display: inline-block;
-    margin: 0 0 0 12px;
-  }
-  
-  .nav-list > li > a {
-    font-weight: bold;
-    text-decoration: none;
-    color: darkslategray;
-  }
+.nav-list > li {
+  display: inline-block;
+  margin: 0 0 0 12px;
+}
 
-  .nav-list__btn-logout {
-    font-weight: bold;
-    color: darkslategray;
-    font-size: inherit;
-    border: 0px;
-    background-color: lightgrey;
-  }
+.nav-list > li > a {
+  font-weight: bold;
+  text-decoration: none;
+  color: darkslategray;
+}
+
+.nav-list__btn-logout {
+  font-weight: bold;
+  color: darkslategray;
+  font-size: inherit;
+  border: 0px;
+  background-color: lightgrey;
+}

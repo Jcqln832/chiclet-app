@@ -14,6 +14,7 @@ import SingleMonth from '../month/month';
 import EditItem from '../EditItem/edititem';
 import Registration from '../Register/register';
 import Login from '../Login/login';
+import Options from '../options/options';
 import './app.css';
 
 
@@ -85,6 +86,7 @@ class App extends Component {
   //       console.error({ error })
   //     })
   // }
+ 
 
   deleteItem = itemId => {
     this.setState({
@@ -149,6 +151,7 @@ class App extends Component {
   }
 
 
+
   render() {
     const value = {
       items: this.state.items,
@@ -163,7 +166,8 @@ class App extends Component {
       decrementYear: this.decrementYear,
       doRedirect: this.doRedirect,
       createNewUser: this.createNewUser,
-      handleClickLogout: this.handleClickLogout
+      handleClickLogout: this.handleClickLogout,
+      prevButton: this.prevButton
     }
 
     const prevButton = value.year > new Date().getFullYear();
@@ -243,6 +247,14 @@ class App extends Component {
               setLoggedIn = {this.setLoggedIn}
               doRedirect = {this.doRedirect}
               users = {value.users}
+            />
+          } 
+        />
+           <Route
+            path='/options'
+            render = {(routeProps) =>
+            <Options
+              {...routeProps}
             />
           } 
         />
