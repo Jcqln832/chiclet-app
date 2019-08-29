@@ -64,8 +64,18 @@
     padding: 12px 0px;
 } */
 
-@media screen and (min-width: 768px) {
-.month__year {
-    flex-basis: 50%;
+.complete {
+  font-style: italic;
+  text-decoration: line-through;
 }
+
+.incomplete {
+  font-style: normal;
+  text-decoration: none;
+}
+
+@media screen and (min-width: 768px) {
+  .month__year {
+      flex-basis: 50%;
+  }
 }

@@ -24,12 +24,22 @@
 }
 
 .form__submit--edit {
-    position: absolute;
-    right: 0;
-    top: 34px;
-    height: 28px;
     border: 0px solid transparent;
-    background: #b5b5b5;
-    border-left: 1px solid;
     font-size: 14px;
+    font-weight: bold;
+    display: block;
+    background-color: #ecebeb;
+    width: 25%;
+    margin: 25px 0px 15px 0px;
+    padding: 10px 0px;
+}
+
+.button--delete {
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 35px;
+    padding: 10px 0px;
 }

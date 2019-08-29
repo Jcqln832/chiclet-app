@@ -34,3 +34,11 @@
     text-decoration: none;
     color: darkslategray;
   }
+
+  .nav-list__btn-logout {
+    font-weight: bold;
+    color: darkslategray;
+    font-size: inherit;
+    border: 0px;
+    background-color: lightgrey;
+  }

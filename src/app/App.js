@@ -12,7 +12,7 @@ import Landing from '../landing/landing';
 import Months from '../months/months';
 import SingleMonth from '../month/month';
 import EditItem from '../EditItem/edititem';
-// import Registration from '../Register/register';
+import Registration from '../Register/register';
 import Login from '../Login/login';
 import './app.css';
 
@@ -23,6 +23,7 @@ const ITEMS = [
     item: "First Item",
     author: "reggie",
     month: "January",
+    completed: false,
     index: 201901
   },
   {
@@ -30,6 +31,7 @@ const ITEMS = [
     item: "Second Item",
     author: "reggie",
     month: "February",
+    completed: false,
     index: 201902
   },
   {
@@ -37,6 +39,7 @@ const ITEMS = [
     item: "Another Item",
     author: "reggie",
     month: "January",
+    completed: false,
     index: 201901
   },
 ];
@@ -60,7 +63,6 @@ class App extends Component {
   state = {
     items: ITEMS,
     users: USERS,
-    completed: false,
     year: initYear,
     isLoggedIn: false
   }
@@ -110,6 +112,10 @@ class App extends Component {
     this.props.history.push(`/months`);
   }
 
+  doLoginRedirect = () => {
+    this.props.history.push(`/login`);
+  }
+
   incrementYear = () => {
     this.setState({
       year: this.state.year + 1
@@ -129,6 +135,20 @@ class App extends Component {
     })
   }
 
+  createNewUser = (user) => {
+    console.log(user);
+    this.setState({
+      users: [...this.state.users, user]
+    })
+    console.log(this.state.users);
+  }
+
+  handleClickLogout = () => {
+    this.setLoggedIn(false);
+    this.props.history.push(`/`);
+  }
+
+
   render() {
     const value = {
       items: this.state.items,
@@ -141,7 +161,9 @@ class App extends Component {
       updateItem: this.updateItem,
       incrementYear: this.incrementYear,
       decrementYear: this.decrementYear,
-      doRedirect: this.doRedirect
+      doRedirect: this.doRedirect,
+      createNewUser: this.createNewUser,
+      handleClickLogout: this.handleClickLogout
     }
 
     const prevButton = value.year > new Date().getFullYear();
@@ -203,14 +225,16 @@ class App extends Component {
               />
             }
           />
-          {/* <Route
+          <Route
             path='/register'
             render = {(routeProps) =>
               <Registration
-                {...routeProps}
+                userslength = {value.users.length}
+                createNewUser = {value.createNewUser}
+                doLoginRedirect = {this.doLoginRedirect}
               />
             }
-          />*/
+          />
           <Route
           path='/login'
           render = {(routeProps) =>
@@ -221,7 +245,7 @@ class App extends Component {
               users = {value.users}
             />
           } 
-        />}
+        />
         </main>
         <footer role="content-info">Footer</footer>
       </div>

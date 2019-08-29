@@ -1,0 +1,40 @@
+.container--grid {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: -1em 0 0 -1em;
+    justify-content: center;
+}
+
+.container--form {
+    font-size: 18px;
+}
+  
+.registrationForm {
+    border: 2px solid gray;
+    border-radius: 4px;
+    padding: 30px 26px;
+}
+  
+label {
+    display: block;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 2px;
+}
+  
+.registrationForm__input {
+    margin-bottom: 18px;
+    padding: 3px 7px;
+    height: 20px;
+    font-size: 1em;
+}
+  
+.registrationForm__submit {
+    margin-top: 15px;
+    padding: 8px 12px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+}
+  

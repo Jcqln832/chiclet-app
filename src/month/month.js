@@ -31,6 +31,7 @@ export default function SingleMonth(props) {
                             month = {props.monthName}
                             monthIndex = {props.monthIndex}
                             addItem = {props.addItem}
+                            monthItems = {props.monthItems}
                         />}
                     </div>
                 </section>

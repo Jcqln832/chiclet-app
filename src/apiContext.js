@@ -5,6 +5,7 @@ const apiContext = React.createContext({
   completed: false,
   deleteItem: () => {},
   addItem: () => {},
+  handleClickLogout: () => {}
 })
 
 export default apiContext;

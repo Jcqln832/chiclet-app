@@ -16,9 +16,7 @@ class AddItem extends Component {
       item: "",
       itemValid: false,
       formValid: false,
-      validationMessages: {
-        item: ''
-      }
+      error: "",
     }
   }
 
@@ -30,12 +28,16 @@ class AddItem extends Component {
   validateItem(fieldValue) {
     fieldValue = fieldValue.trim();
     if (fieldValue.length === 0) {
-        return 'item content is required'
+        return 'Item content is required'
     } else if 
-     (fieldValue.length > 150) {
-        return 'item content exceeds length limit (150)'
-    } else {
-        return "";
+     (fieldValue.length > 60) {
+        return 'Item content exceeds length limit (50)'
+    } else if 
+      (this.props.monthItems.length === 6) {
+        return 'Item limit reached. Remove an item to add another.'
+      }
+     else { 
+        return false;
     }
   }
 
@@ -51,28 +53,26 @@ class AddItem extends Component {
   validateForm(item) {
    const itemMessage =  this.validateItem(item);
 
-  //   this.setState({
-  //     validationMessages: {
-  //       item: itemMessage,
-  //     },
-  //     itemValid: !itemMessage,
-  //   }, this.formValid );
-  // }
+    this.setState({
+      error: itemMessage,
+      itemValid: !itemMessage,
+    }, this.formValid );
+  }
 
-  // formValid() {
-  //   this.setState({
-  //     formValid: (this.state.itemValid)
-  //   }, () => this.doFetch());
-  // }
+  formValid() {
+    this.setState({
+      formValid: (this.state.itemValid)
+    }, () => this.doFetch());
+  }
 
-  // doFetch() {
+   doFetch() {
   //   const url = `${config.API_ENDPOINT}/month/:monthId`;
-    // const item = this.state.item;
+    const item = this.state.item;
     const month= this.props.month;
     const index = this.props.monthIndex
 
-  //   if(this.state.formValid) {
-  //     console.log(this.state.formValid);
+    if(this.state.formValid) {
+      console.log(this.state.formValid);
   //   const options = {
   //     method: 'POST',
   //     body: JSON.stringify({
@@ -95,6 +95,7 @@ class AddItem extends Component {
         index: Number(index)
       }
     )
+  }
 }
 
     // put the data into STORE(db)
@@ -133,13 +134,13 @@ class AddItem extends Component {
     const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
     return (
         <section className='AddItem'>
-            { error }
+            {/* { error } */}
             <form className="form--add" onSubmit={e => this.handleSubmit(e)}>
             
                 <div className="field">
                     <label className="form--add__label"htmlFor="item-input">Add an item</label>
                     <input className="form--add__input" type="text" name="name" id="item-input" aria-label="new month item" aria-required="true" onChange={e => this.itemChanged(e.target.value)}/>
-                    {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
+                    {<ValidationError hasError={!this.state.itemValid} message={this.state.error}/>}
                 </div>
                 <button className="form--add__submit" type="submit">
                  + Save

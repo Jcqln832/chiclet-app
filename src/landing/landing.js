@@ -16,11 +16,18 @@ export default function Landing(props) {
                     <ul>
                         <li>Log out and view options in the top right.</li>
                         <li>Click on a month to view just that month.</li>
-                        <li>In the single month view, you can add, edit, or delete items.</li>
+                        <li>In the single month view, you can add items to the month.</li>
+                        <li>Click the edit icon to the left of an item to edit, complete, or delete the item</li>
+                        <li><em>Experience the app through the demo account:</em>
+                            <ul>
+                                <li>User Name: HarryP</li>
+                                <li>Password: fluffy</li>
+                            </ul>
+                        </li>
                     </ul>
                     <div className="container--btn">
-                    <Link to="/months" className="btn">Register</Link>
-                    <Link to="/months" className="btn" >Log In</Link>
+                    <Link to="/register" className="btn">Register</Link>
+                    <Link to="/login" className="btn" >Log In</Link>
                     </div>  
                 </div>
             </section>  

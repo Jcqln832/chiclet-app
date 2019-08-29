@@ -13,13 +13,21 @@ class EditItem extends Component {
     console.log(props.item)
     //capture form inputs here to make a controlled form
     this.state = {
-      item: this.props.item,
+      item: this.props.item.item,
+      completed: this.props.item.completed,
       itemValid: false,
       formValid: false,
       validationMessages: {
         item: ''
       }
     }
+  }
+
+  checkboxLabel = () => {
+  return this.props.item.completed ?
+    <label htmlFor="completed">Incomplete:</label>
+    :
+    <label htmlFor="completed">Complete:</label>
   }
 
   doRedirect = () => {
@@ -32,8 +40,20 @@ class EditItem extends Component {
       console.log(this.state.item)
   }
 
+  completedChanged() {
+    // this.setState({
+    //   completed: !(this.state.completed) 
+    // })
+    // console.log(this.state.completed)
+    this.setState(prevState => ({
+      completed: !prevState.completed
+    }));
+    console.log(this.state.completed)
+  }
+
   // Validate item not empty and not too long. Return a message if so
   validateItem(updatedItem) {
+    console.log(updatedItem.item)
     updatedItem.item = updatedItem.item.trim();
     if (updatedItem.item.length === 0) {
         return 'item content is required'
@@ -55,10 +75,11 @@ class EditItem extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log("clicked!");
-    // Get item text from state -- construct udpated item object
+    // Get item text and completed from state -- construct udpated item object
     const updatedItem = {
       id: this.props.item.id,
       item: this.state.item,
+      completed: this.state.completed,
       month: this.props.item.month,
       index: this.props.item.index
     }
@@ -68,7 +89,6 @@ class EditItem extends Component {
 
   validateForm(updatedItem) {
    const itemMessage = this.validateItem(updatedItem);
-
 
    this.props.updateItem(updatedItem);
    this.doRedirect();
@@ -155,18 +175,14 @@ class EditItem extends Component {
         <h2 className="month__title">Update Item</h2>
             <form className="form--edit" onSubmit={e => this.handleSubmit(e)}>
               <label className="form__label--edit" htmlFor="edit-input">Edit:</label>
-              <input className="form__input--edit" type="text" name="update" id="edit-input" defaultValue={this.state.item.item} onChange={e => this.itemChanged(e.target.value)}/>
+              <input className="form__input--edit" type="text" name="update" id="edit-input" defaultValue={this.state.item} onChange={e => this.itemChanged(e.target.value)}/>
               {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
+              {this.checkboxLabel()}
+              <input type="checkbox" id="completed" name="completed" onChange={e => this.completedChanged(e.target.value)}/>
               <button className="form__submit--edit" type="submit">Done</button>
             </form>
             <hr></hr>
             <button className="button--delete" type="button" onClick={this.handleClickDelete}>Delete</button>
-        
-
-
-              {/* <label fsor="complete-input">Complete</label>
-                  <input type="radio" name="edit" id="complete"/> */}
-            
         </div>  
       </section>
       </div>

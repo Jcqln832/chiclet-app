@@ -19,10 +19,10 @@ const AppNav = (props) => {
 
 export default AppNav;
 
-// FolderNav.defaultProps = {
-//   folders: []
-// };
+AppNav.defaultProps = {
+  isLoggedIn: false
+};
 
-// FolderNav.propTypes = {
-//   folders: PropTypes.array.isRequired
-// };
+AppNav.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired
+};
