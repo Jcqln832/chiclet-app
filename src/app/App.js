@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../apiContext';
 // import config from '../config';
-// import NavError from '../ErrorBoundaries/NavError';
-// import NoteError from '../ErrorBoundaries/NoteError';
+import NavError from '../ErrorBoundaries/NavError';
+import AccountError from '../ErrorBoundaries/AccountError';
+import AppError from '../ErrorBoundaries/AppError';
 import MONTHS from '../monthList';
 import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
@@ -151,7 +152,6 @@ class App extends Component {
   }
 
 
-
   render() {
     const value = {
       items: this.state.items,
@@ -177,16 +177,17 @@ class App extends Component {
       <div className='App'>
         <nav className='app__nav'>
           <h1 className="app-title"><span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"}/></span>Chiclet Yearly Planner</h1>
-          {/* <NavError> */}
+          <NavError>
             <Route 
               path='/' 
               render = {() =>
                 <AppNav isLoggedIn = {value.isLoggedIn} />
               }
             />
-          {/* </NavError> */}
+          </NavError>
         </nav>
         <main className='app__main'>
+          <AppError>
           <Route
             exact path='/'
             component = {Landing}
@@ -210,7 +211,6 @@ class App extends Component {
               return (
               <SingleMonth
                 doRedirect = {value.doRedirect}
-                addItem = {value.addItem}
                 year = {value.year}
                 monthName = {month.name}
                 monthIndex = {monthIndex}
@@ -229,6 +229,8 @@ class App extends Component {
               />
             }
           />
+          </AppError>
+          <AccountError>
           <Route
             path='/register'
             render = {(routeProps) =>
@@ -258,6 +260,7 @@ class App extends Component {
             />
           } 
         />
+        </AccountError>
         </main>
         <footer role="content-info">Footer</footer>
       </div>

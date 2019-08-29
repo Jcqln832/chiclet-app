@@ -2,8 +2,8 @@ import React from 'react'
 
 const apiContext = React.createContext({
   items: [],
-  completed: false,
-  deleteItem: () => {},
+  incrementYear: () => {},
+  decrementYear: () => {},
   addItem: () => {},
   handleClickLogout: () => {}
 })

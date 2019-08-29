@@ -1,68 +1,53 @@
 .month--single {
-    padding: 30px;
-    min-height: 350px;
-    position: relative;
-    margin-top: 35px;
-  }
+  padding: 30px;
+  min-height: 350px;
+  position: relative;
+  margin-top: 35px;
+}
   
-  .list--single {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .list--single > li {
-    padding: 4px;
-  }
-  
-  /* .list--single > li:nth-child(odd) {
-    background-color: lightgrey;
-  } */
-  
-  .container--item {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .item__options {
-    padding: 0px 6px;
-  }
+.list--single {
+  list-style-type: none;
+  padding: 0;
+}
 
-  .edit-btn {
-    margin-right: 10px;
-    border: 0px;
-    font-size: 14px;
+.list--single > li {
+  padding: 4px;
+}
+
+.container--item {
+  display: flex;
+  flex-direction: row;
+}
+
+.item__options {
+  padding: 0px 6px;
+}
+
+.edit-btn {
+  margin-right: 10px;
+  border: 0px;
+  font-size: 14px;
 }
 
 .edit-btn:hover {
-   cursor: pointer;
+  cursor: pointer;
 }
 
 .container--title {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .month__year {
-    position: relative;
+  position: relative;
 }
 
 .arrow-back {
-    position: absolute;
-    left: 0;
-    cursor: pointer;
-    padding: 0px 15px 0px 0px;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+  padding: 0px 15px 0px 0px;
 }
-  
-/* .btn-add {
-    position: absolute;
-    bottom: 0;
-    left: 30px;
-    right: 30px;
-    margin-bottom: 30px;
-    text-align: center;
-    background-color: #ecebeb;
-    padding: 12px 0px;
-} */
 
 .complete {
   font-style: italic;

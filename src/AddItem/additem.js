@@ -86,7 +86,7 @@ class AddItem extends Component {
   //   }
   //   console.log(options)
 
-    this.props.addItem(
+    this.context.addItem(
       {
         id: this.context.items.length + 1,
         item: item,
