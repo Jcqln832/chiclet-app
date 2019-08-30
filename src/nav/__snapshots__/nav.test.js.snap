@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav tests renders the UI as expected -- loggedIn false 1`] = `
+<ul
+  className="nav-list"
+>
+  <li>
+    Hello!
+  </li>
+</ul>
+`;
+
+exports[`Nav tests renders the UI as expected -- loggedIn true 1`] = `
+<ul
+  className="nav-list"
+>
+  <li>
+    Hello!
+  </li>
+</ul>
+`;

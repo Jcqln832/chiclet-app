@@ -7,7 +7,7 @@ const AppNav = (props) => {
 
     return (
         <ul className="nav-list">
-            {props.isLoggedIn ? 
+            {props.isLoggedIn ?
                 <NavLinks />
                 :
                 <li>Hello!</li>

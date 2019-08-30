@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Router} from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../apiContext';
@@ -7,7 +7,9 @@ import apiContext from '../apiContext';
 import NavError from '../ErrorBoundaries/NavError';
 import AccountError from '../ErrorBoundaries/AccountError';
 import AppError from '../ErrorBoundaries/AppError';
-import MONTHS from '../monthList';
+import MONTHS from '../Utils/monthsList';
+import ITEMS from '../Utils/itemsList';
+import USERS from '../Utils/usersList';
 import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
 import Months from '../months/months';
@@ -17,47 +19,6 @@ import Registration from '../Register/register';
 import Login from '../Login/login';
 import Options from '../options/options';
 import './app.css';
-
-
-const ITEMS = [
-  {
-    id: 1,
-    item: "First Item",
-    author: "reggie",
-    month: "January",
-    completed: false,
-    index: 201901
-  },
-  {
-    id: 2,
-    item: "Second Item",
-    author: "reggie",
-    month: "February",
-    completed: false,
-    index: 201902
-  },
-  {
-    id: 3,
-    item: "Another Item",
-    author: "reggie",
-    month: "January",
-    completed: false,
-    index: 201901
-  },
-];
-
-const USERS = [
-  {
-    id: 111,
-    user_name: "harryP",
-    password: "fluffy",
-  },
-  {
-    id: 222,
-    user_name: "RonW",
-    password: "wormtail"
-  }
-];
 
 const initYear = new Date().getFullYear()
 
@@ -111,9 +72,9 @@ class App extends Component {
     })
   }
  
-  // doRedirect = (itemId) => {
-  //   this.props.history.push(`/months`);
-  // }
+  doRedirect = (itemId) => {
+    this.props.history.push(`/months`);
+  }
 
   doLoginRedirect = () => {
     this.props.history.push(`/login`);
@@ -173,7 +134,7 @@ class App extends Component {
     const prevButton = value.year > new Date().getFullYear();
   
     return (
-      <Router>
+
     <apiContext.Provider value={value}>
       <div className='App'>
         <nav className='app__nav'>
@@ -211,7 +172,6 @@ class App extends Component {
               console.log(month);
               return (
               <SingleMonth
-                // doRedirect = {value.doRedirect}
                 doRedirect = {() => history.push('/months')}
                 year = {value.year}
                 monthName = {month.name}
@@ -267,9 +227,9 @@ class App extends Component {
         <footer role="contentinfo">Footer</footer>
       </div>
       </apiContext.Provider>
-      </Router>
+    
     )
   }
 }
 
-export default App;
+export default withRouter(App);

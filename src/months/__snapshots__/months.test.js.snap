@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`12-month grid test renders the UI as expected when prevButton is TRUE 1`] = `"component"`;
+
+exports[`12-month grid test renders the UI as expected with a few items 1`] = `"component"`;

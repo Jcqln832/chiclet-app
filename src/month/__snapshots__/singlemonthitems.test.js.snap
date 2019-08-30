@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`single month list items tests renders the UI as expected with a few items 1`] = `"component"`;
