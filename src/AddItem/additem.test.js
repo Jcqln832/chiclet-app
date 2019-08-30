@@ -1,20 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
-import EditItem from './edititem';
+import AddItem from './additem';
 import ITEMS from '../Utils/itemsList';
 import testWrapper from '../Utils/testHelpers';
 
 describe('single month list items tests', () => {
     const div = document.createElement('div');
-    const item = ITEMS.find(item => item.id === "01");
-    const updateItem = {};
-    const deleteItem = {};
              
     it('renders without crashing', () => {
         ReactDOM.render(
             testWrapper(
-                <EditItem item={item}/>
+                <AddItem />
             )
         , div);
         ReactDOM.unmountComponentAtNode(div);
@@ -24,7 +21,7 @@ describe('single month list items tests', () => {
         const tree = renderer
         .create( 
             testWrapper(
-                <EditItem item={item}/>
+                <AddItem />
             )
         )
           .toJSON();
@@ -32,4 +29,7 @@ describe('single month list items tests', () => {
     });
 });
 
-
+// month = {props.monthName}
+// monthIndex = {props.monthIndex}
+// addItem = {props.addItem}
+// monthItems = {props.monthItems}
