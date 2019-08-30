@@ -31,7 +31,7 @@ class AddItem extends Component {
         return 'Item content is required'
     } else if 
      (fieldValue.length > 60) {
-        return 'Item content exceeds length limit (50)'
+        return 'Item content exceeds length limit (60)'
     } else if 
       (this.props.monthItems.length === 6) {
         return 'Item limit reached. Remove an item to add another.'

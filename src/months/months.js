@@ -14,9 +14,9 @@ export default function Months(props) {
             {MONTHS.map(month =>
             <Link to={`/month/${Number(props.year + month.id)}`} className="container--month" key={month.id}>
                 <section>
-                    <div className="month">
+                    <div className="month month--grid">
                         <h2 className="month__title">{month.name}</h2>
-                        <ul>
+                        <ul className="month__itemList">
                             {<MonthItems gridItems = {props.items.filter(item => Number(item.index) === Number(props.year + month.id))}
                             /> }
                         </ul>
