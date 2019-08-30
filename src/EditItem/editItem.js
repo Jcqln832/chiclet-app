@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import config from '../config';
+// import config from '../config';
 import {withRouter} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
@@ -159,7 +159,7 @@ class EditItem extends Component {
 }
 
   render () {
-    const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
+    // const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
     return (
     <>
       <div className="container--title">

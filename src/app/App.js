@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, Router} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../apiContext';
@@ -111,9 +111,9 @@ class App extends Component {
     })
   }
  
-  doRedirect = (itemId) => {
-    this.props.history.push(`/months`);
-  }
+  // doRedirect = (itemId) => {
+  //   this.props.history.push(`/months`);
+  // }
 
   doLoginRedirect = () => {
     this.props.history.push(`/login`);
@@ -164,7 +164,7 @@ class App extends Component {
       updateItem: this.updateItem,
       incrementYear: this.incrementYear,
       decrementYear: this.decrementYear,
-      doRedirect: this.doRedirect,
+      // doRedirect: this.doRedirect,
       createNewUser: this.createNewUser,
       handleClickLogout: this.handleClickLogout,
       prevButton: this.prevButton
@@ -173,6 +173,7 @@ class App extends Component {
     const prevButton = value.year > new Date().getFullYear();
   
     return (
+      <Router>
     <apiContext.Provider value={value}>
       <div className='App'>
         <nav className='app__nav'>
@@ -204,13 +205,14 @@ class App extends Component {
           />
           <Route
             path='/month/:monthId'
-            render ={(routeProps) => {
-              const monthIndex = routeProps.match.params.monthId;
+            render ={({match, history}) => {
+              const monthIndex = match.params.monthId;
               const month = MONTHS.find(month => month.id === monthIndex.slice(4))
               console.log(month);
               return (
               <SingleMonth
-                doRedirect = {value.doRedirect}
+                // doRedirect = {value.doRedirect}
+                doRedirect = {() => history.push('/months')}
                 year = {value.year}
                 monthName = {month.name}
                 monthIndex = {monthIndex}
@@ -221,9 +223,9 @@ class App extends Component {
           />
           <Route 
             path='/edit/:itemId'
-            render ={(routeProps) => 
+            render ={({match}) => 
               <EditItem
-                item = {this.state.items.find(item => item.id === Number(routeProps.match.params.itemId))}
+                item = {this.state.items.find(item => item.id === Number(match.params.itemId))}
                 updateItem = {value.updateItem}
                 deleteItem = {value.deleteItem}
               />
@@ -233,7 +235,7 @@ class App extends Component {
           <AccountError>
           <Route
             path='/register'
-            render = {(routeProps) =>
+            render = {() => 
               <Registration
                 userslength = {value.users.length}
                 createNewUser = {value.createNewUser}
@@ -262,11 +264,12 @@ class App extends Component {
         />
         </AccountError>
         </main>
-        <footer role="content-info">Footer</footer>
+        <footer role="contentinfo">Footer</footer>
       </div>
       </apiContext.Provider>
+      </Router>
     )
   }
 }
 
-export default withRouter(App);  
+export default App;

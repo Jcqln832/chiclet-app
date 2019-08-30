@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import config from '../config';
+// import config from '../config';
 import {withRouter} from 'react-router-dom';
 import ValidationError from '../ValidationError';
 import apiContext from '../apiContext';
 import PropTypes from 'prop-types';
 import './addItem.css'
-import MonthItems from '../months/monthitems';
+// import MonthItems from '../months/monthitems';
 
 class AddItem extends Component {
   static contextType = apiContext;
@@ -131,7 +131,7 @@ class AddItem extends Component {
 // }
 
   render () {
-    const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
+    // const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
     return (
         <section className='AddItem'>
           <form className="form--add" onSubmit={e => this.handleSubmit(e)}>
