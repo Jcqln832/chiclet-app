@@ -21,15 +21,10 @@ describe('single month list items tests', () => {
         const tree = renderer
         .create( 
             testWrapper(
-                <AddItem />
+                <AddItem month={"January"} monthIndex={201901} addItem={()=>{}} monthItems={ITEMS.filter(item => item.index === 201901)}/>
             )
         )
           .toJSON();
         expect(tree).toMatchSnapshot();  
     });
 });
-
-// month = {props.monthName}
-// monthIndex = {props.monthIndex}
-// addItem = {props.addItem}
-// monthItems = {props.monthItems}

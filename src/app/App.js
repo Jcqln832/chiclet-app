@@ -112,7 +112,6 @@ class App extends Component {
     this.props.history.push(`/`);
   }
 
-
   render() {
     const value = {
       items: this.state.items,
