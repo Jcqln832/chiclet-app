@@ -17,7 +17,7 @@ export default function SingleMonth(props) {
             </h2>
             </div>
             
-            <div className="container--grid">
+            <div className="container--grid-single">
                 <section className="container--1month">
                     <div className="month month--single">
                         <h2 className="month__title">{props.monthName}</h2>

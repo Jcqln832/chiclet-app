@@ -1,3 +1,14 @@
+.container--grid-single {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .container--1month {
+    width: 100%;
+  }
+
 .form--edit {
     position: relative;
     padding: 12px 0px;

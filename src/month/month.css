@@ -1,8 +1,20 @@
+.container--grid-single {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* margin: -1em 0 0 -1em; */
+  justify-content: center;
+}
+
+.container--1month {
+  width: 100%;
+}
+
 .month--single {
-  padding: 30px;
+  padding: 20px;
   min-height: 350px;
   position: relative;
-  margin-top: 35px;
+  margin-top: 30px;
 }
   
 .list--single {
@@ -36,11 +48,12 @@
 .container--title {
   display: flex;
   justify-content: center;
-}
-
-.month__year {
   position: relative;
 }
+
+/* .month__year {
+  position: relative;
+} */
 
 .arrow-back {
   position: absolute;
@@ -61,6 +74,16 @@
 
 @media screen and (min-width: 768px) {
   .month__year {
-      flex-basis: 50%;
+    flex-basis: 50%;
+    position: relative;
+  }
+
+  .container--title {
+    position: static;
+  }
+
+  .month--single {
+    padding: 30px;
+    margin-top: 35px;
   }
 }

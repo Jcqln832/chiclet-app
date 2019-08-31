@@ -45,6 +45,9 @@
   .container--1month {
     flex-basis: 50%;
   }
+  .container--grid {
+    margin: -1em 0 0 -1em;
+  }
 }
   
 @media screen and (min-width: 1200px) {

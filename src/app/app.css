@@ -29,6 +29,8 @@ main {
   width: 100%;
   max-width: 400px;
   flex: 1 0 auto;
+  padding: 0px 1em;
+  box-sizing: border-box;
 }
 
 footer {

@@ -171,7 +171,7 @@ class EditItem extends Component {
         </h2>
       </div>
 
-      <div className="container--grid">
+      <div className="container--grid-single">
         <section className="container--1month">
           <div className="month month--single">
             <h2 className="month__title">Update Item</h2>

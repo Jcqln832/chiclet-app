@@ -9,7 +9,7 @@
   
 .app-title {
   text-align: left;
-  font-size: 1.35em;
+  font-size: .95em;
   margin: 0 0 0 12px;
 }
 
@@ -26,7 +26,8 @@
   
 .nav-list > li {
   display: inline-block;
-  margin: 0 0 0 12px;
+  font-size: 14px;
+  /* margin: 0 0 0 12px; */
 }
 
 .nav-list > li > a {
@@ -41,4 +42,15 @@
   font-size: inherit;
   border: 0px;
   background-color: lightgrey;
+}
+
+@media screen and (min-width: 768px) {
+  .app-title {
+    font-size: 1.35em;
+  }
+  .nav-list {
+    list-style-type: none;
+    font-size: 16px;
+    margin: 0 0 0 12px; 
+  }
 }
