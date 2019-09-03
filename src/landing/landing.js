@@ -6,7 +6,7 @@ import '../months/months.css'
 export default function Landing(props) {
 
     return (
-        <div className="container--grid">
+        <div className="container--landing">
 
             <section className="container--intro">
                 <div className="intro">
