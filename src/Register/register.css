@@ -1,8 +1,8 @@
-.container--grid {
+.container--landing {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin: -1em 0 0 -1em;
+    /* margin: -1em 0 0 -1em; */
     justify-content: center;
 }
 

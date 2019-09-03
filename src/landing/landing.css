@@ -5,8 +5,8 @@
 }
   
   .intro {
-    margin: 1em auto;
-    padding: 12px;
+    margin: 0 auto;
+    padding: 1em;
   }
   
   .intro > h3 {

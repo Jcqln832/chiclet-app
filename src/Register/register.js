@@ -74,7 +74,7 @@ export default class Registration extends Component {
       <header role="banner">
           <h2>Register</h2>
       </header>
-      <div className="container--grid">
+       <div className="container--landing">
         <section className="container--form">
           <form
             className='registrationForm'

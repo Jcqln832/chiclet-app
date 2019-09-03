@@ -45,7 +45,7 @@ exports[`General App test renders the UI as expected 1`] = `
     className="app__main"
   >
     <div
-      className="container--grid"
+      className="container--landing"
     >
       <section
         className="container--intro"
