@@ -136,7 +136,6 @@ class App extends Component {
 
     <apiContext.Provider value={value}>
       <div className='App'>
-        <div className='app-wrap'>
         <nav className='app__nav'>
           <h1 className="app-title"><span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"}/></span>Chiclet Yearly Planner</h1>
           <NavError>
@@ -225,7 +224,6 @@ class App extends Component {
         </AccountError>
         </main>
         <footer role="contentinfo">Footer</footer>
-      </div>
       </div>
       </apiContext.Provider>
     
