@@ -5,7 +5,8 @@ const apiContext = React.createContext({
   incrementYear: () => {},
   decrementYear: () => {},
   addItem: () => {},
-  handleClickLogout: () => {}
+  handleClickLogout: () => {},
+  doRedirect: () => {},
 })
 
 export default apiContext;

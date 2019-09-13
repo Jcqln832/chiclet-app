@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../../apiContext';
 import config from '../../config';
-import PrivateRoute from '../../Utils/PrivateRoute'
+import PrivateRoute, {authCheck} from '../../Utils/PrivateRoute'
 import PublicOnlyRoute from '../../Utils/PublicOnlyRoute'
 import NavError from '../ErrorBoundaries/NavError';
 import AccountError from '../ErrorBoundaries/AccountError';
@@ -14,13 +14,15 @@ import MONTHS from '../../Utils/monthsList';
 // import USERS from '../../Utils/usersList';
 import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
-import Months from '../months/months';
+
 import SingleMonth from '../month/month';
 import EditItem from '../EditItem/edititem';
 import TokenService from '../../services/token-service'
 import ItemApiService from '../../services/item-api-service'
 import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
+import MonthsPage from '../../routes/MonthsPage/MonthsPage';
+import SingleMonthPage from '../../routes/SingleMonthPage/SingleMonthPage';
 import Options from '../options/options';
 import './app.css';
 
@@ -36,20 +38,25 @@ class App extends Component {
   componentDidMount() {
     this.clearError()
     ItemApiService.getItems()
-    .then((items) => {
-      this.setState({ items })
-      console.log(this.state.items)
-    })
-    .catch(error => {
-      console.error({ error })
-      this.setState({error})
-    })
+      .then((items) => {
+        this.setState({ items })
+        console.log(this.state.items)
+      })
+      .catch(error => {
+        console.error({ error })
+        this.setState({ error })
+      })
   }
 
   clearError = () => {
     this.setState({ error: null })
   }
- 
+
+  setError = error => {
+    console.error(error)
+    this.setState({ error })
+  }
+
   deleteItem = itemId => {
     this.setState({
       items: this.state.items.filter(item => item.id !== itemId)
@@ -71,10 +78,10 @@ class App extends Component {
       )
     })
   }
- 
-  // doRedirect = (itemId) => {
-  //   this.props.history.push(`/months`);
-  // }
+
+  doRedirect = () => {
+    this.props.history.push(`/months`);
+  }
 
   // doLoginRedirect = () => {
   //   this.props.history.push(`/login`);
@@ -125,89 +132,88 @@ class App extends Component {
       updateItem: this.updateItem,
       incrementYear: this.incrementYear,
       decrementYear: this.decrementYear,
-      // doRedirect: this.doRedirect,
+      doRedirect: this.doRedirect,
       createNewUser: this.createNewUser,
       handleClickLogout: this.handleClickLogout,
-      prevButton: this.prevButton
+      // prevButton: this.prevButton
     }
 
-    const prevButton = value.year > new Date().getFullYear();
-  
+    // const prevButton = value.year > new Date().getFullYear();
+
     return (
 
-    <apiContext.Provider value={value}>
-      <div className='App'>
-        <nav className='app__nav'>
-          <h1 className="app-title"><span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"}/></span>Chiclet Yearly Planner</h1>
-          <NavError>
-            <AppNav  />
-          </NavError>
-        </nav>
-        <main className='app__main'>
-          <AppError>
-          <Route
-            exact path='/'
-            component = {Landing}
-          />
-          <Route
-            path='/months'
-            render ={() =>
-              <Months 
-                items= {value.items} 
-                year={value.year}
-                prevButton = {prevButton}
+      <apiContext.Provider value={value}>
+        <div className='App'>
+          <nav className='app__nav'>
+            <h1 className="app-title"><span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"} /></span>Chiclet Yearly Planner</h1>
+            <NavError>
+              <AppNav />
+            </NavError>
+          </nav>
+          <main className='app__main'>
+            <AppError>
+              <Route
+                exact path='/'
+                component={Landing}
               />
-            }
-          />
-          <Route
-            path='/month/:monthId'
-            render ={({match, history}) => {
-              const monthIndex = match.params.monthId;
-              const month = MONTHS.find(month => month.id === monthIndex.slice(4))
-              console.log(month);
-              return (
-              <SingleMonth
-                doRedirect = {() => history.push('/months')}
-                year = {value.year}
-                monthName = {month.name}
-                monthIndex = {monthIndex}
-                monthItems = {value.items.filter(item => item.index === Number(monthIndex))}
+              <PrivateRoute
+                path='/months'
+                component={MonthsPage}
               />
-              )
-            }}
-          />
-          <Route 
-            path='/edit/:itemId'
-            render ={({match}) => 
-              <EditItem
-                item = {this.state.items.find(item => item.id === Number(match.params.itemId))}
-                updateItem = {value.updateItem}
-                deleteItem = {value.deleteItem}
+              <Route
+                path='/month/:monthId'
+                component = {SingleMonthPage}
+                // render={({ match }) => {
+                //   const monthIndex = match.params.monthId;
+                //   const month = MONTHS.find(month => month.id === monthIndex.slice(4));
+                //   const componentProps = {
+                //     monthName: month.name,
+                //     monthIndex: monthIndex
+                //   }
+                //   const component = <SingleMonthPage>
+                
+                //     authCheck(componentProps, component)
+                //     {/* <SingleMonthPage
+                //       monthName={month.name}
+                //       monthIndex={monthIndex}
+                //     /> */}
+              
+                // }
+                
               />
-            }
-          />
-          </AppError>
-          <AccountError>
-            <PublicOnlyRoute
-              path={'/register'}
-              component={RegistrationPage}
-            />
-            <PublicOnlyRoute
-              path={'/login'}
-              component={LoginPage}
-            />
-           <Route
-              path='/options'
-              render = {(routeProps) =>
-                <Options
-                  {...routeProps}
-                />
-              }
-           />
-        </AccountError>
-        </main>
-        <footer role="contentinfo">Footer</footer>
-      </div>
+              <Route
+                path='/edit/:itemId'
+                render={({ match }) =>
+                  <EditItem
+                    item={this.state.items.find(item => item.id === Number(match.params.itemId))}
+                    updateItem={value.updateItem}
+                    deleteItem={value.deleteItem}
+                  />
+                }
+              />
+            </AppError>
+
+            <AccountError>
+              <PublicOnlyRoute
+                path={'/register'}
+                component={RegistrationPage}
+              />
+              <PublicOnlyRoute
+                path={'/login'}
+                component={LoginPage}
+              />
+              <Route
+                path='/options'
+                render={(routeProps) =>
+                  <Options
+                    {...routeProps}
+                  />
+                }
+              />
+            </AccountError>
+          </main>
+          <footer role="contentinfo">Footer</footer>
+        </div>
       </apiContext.Provider>
     )
   }

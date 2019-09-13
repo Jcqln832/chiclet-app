@@ -7,7 +7,7 @@ import MonthItems from './monthitems'
 import './months.css'
 
 export default function Months(props) {
-    return (
+    return ( 
     <>
         <Year prevButton = {props.prevButton} />
         <div className="container--grid">

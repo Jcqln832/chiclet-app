@@ -26,7 +26,7 @@ const ItemApiService = {
           : res.json()
       )
   },
-  postItem(content, index, user) {
+  postItem(content, index) {
     return fetch(`${config.API_ENDPOINT}/items`, {
       method: 'POST',
       headers: {
@@ -36,7 +36,6 @@ const ItemApiService = {
       body: JSON.stringify({
         content,
         index,
-        user
       }),
     })
       .then(res =>

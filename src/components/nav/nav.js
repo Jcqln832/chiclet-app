@@ -18,11 +18,3 @@ const AppNav = (props) => {
 }
 
 export default AppNav;
-
-// AppNav.defaultProps = {
-//   isLoggedIn: false
-// };
-
-// AppNav.propTypes = {
-//   isLoggedIn: PropTypes.bool.isRequired
-// };

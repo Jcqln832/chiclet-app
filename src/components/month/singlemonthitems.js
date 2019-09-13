@@ -13,7 +13,7 @@ export default function SingleMonthItems(props) {
                 <Link to={`/edit/${item.id}`} className="edit-btn">
                     <FontAwesomeIcon icon={faEdit} size={"lg"}/>
                 </Link>
-                {item.item}
+                {item.content}
              </li>
         )}
         </>

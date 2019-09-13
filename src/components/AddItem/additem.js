@@ -5,6 +5,7 @@ import ValidationError from '../../ValidationError';
 import apiContext from '../../apiContext';
 import PropTypes from 'prop-types';
 import './addItem.css'
+import ItemApiService from '../../services/item-api-service';
 // import MonthItems from '../months/monthitems';
 
 class AddItem extends Component {
@@ -13,15 +14,16 @@ class AddItem extends Component {
     super(props);
     // capture form inputs here to make a controlled form
     this.state = {
-      item: "",
+      content: "",
       itemValid: false,
       formValid: false,
       error: "",
     }
   }
 
-  itemChanged(item) {
-    this.setState({item})
+  itemChanged(content) {
+    this.setState({content})
+    console.log(this.state.content)
   }
 
   // Validate item not empty and not too long. Return a message if so.
@@ -45,7 +47,7 @@ class AddItem extends Component {
     e.preventDefault();
     console.log("clicked!");
     // Get item from state
-    const item = this.state.item;
+    const item = this.state.content;
     // Validate before fetch attempt
     this.validateForm(item);
   }
@@ -66,13 +68,23 @@ class AddItem extends Component {
   }
 
    doFetch() {
-  //   const url = `${config.API_ENDPOINT}/month/:monthId`;
-    const item = this.state.item;
+    const content = this.state.content;
     const month= this.props.month;
-    const index = this.props.monthIndex
+    const index = Number(this.props.monthIndex)
 
     if(this.state.formValid) {
       console.log(this.state.formValid);
+      ItemApiService.postItem(content, index)
+      .then(this.context.addItem)
+      .then(this.setState({
+        content: "",
+        itemValid: false,
+        formValid: false,
+        error: "",
+      }))
+      .catch(this.context.setError)
+
+ 
   //   const options = {
   //     method: 'POST',
   //     body: JSON.stringify({
@@ -86,15 +98,15 @@ class AddItem extends Component {
   //   }
   //   console.log(options)
 
-    this.context.addItem(
-      {
-        id: this.context.items.length + 1,
-        item: item,
-        author: "signedinUser",
-        month: month,
-        index: Number(index)
-      }
-    )
+    // this.context.addItem(
+    //   {
+    //     // id: this.context.items.length + 1,
+    //     content: content,
+    //     // author: "signedinUser",
+    //     month: month,
+    //     index: Number(index)
+    //   }
+    // )
   }
 }
 
@@ -157,6 +169,6 @@ AddItem.defaultProps = {
   }
 }
 
-AddItem.propTypes = {
-  addItem: PropTypes.func.isRequired
-};
+// AddItem.propTypes = {
+//   addItem: PropTypes.func.isRequired
+// };
