@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
-import ValidationError from '../ValidationError';
+import ValidationError from '../../ValidationError';
 import PropTypes from 'prop-types';
 import './edititem.css'
 

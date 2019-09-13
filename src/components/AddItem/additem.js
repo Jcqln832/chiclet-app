@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // import config from '../config';
 import {withRouter} from 'react-router-dom';
-import ValidationError from '../ValidationError';
-import apiContext from '../apiContext';
+import ValidationError from '../../ValidationError';
+import apiContext from '../../apiContext';
 import PropTypes from 'prop-types';
 import './addItem.css'
 // import MonthItems from '../months/monthitems';

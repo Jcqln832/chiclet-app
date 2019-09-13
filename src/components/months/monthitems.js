@@ -6,7 +6,7 @@ export default function MonthItems(props) {
     return (
         <>
         {props.gridItems.map(item =>
-            <li key={item.id} className={item.completed ? "complete" : "incomplete"}>{item.item}</li>
+            <li key={item.id} className={item.completed ? "complete" : "incomplete"}>{item.content}</li>
         )}
         </>
     )

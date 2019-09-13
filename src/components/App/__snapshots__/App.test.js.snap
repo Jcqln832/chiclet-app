@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`General App test renders the UI as expected 1`] = `
+<div
+  className="App"
+>
+  <nav
+    className="app__nav"
+  >
+    <h1
+      className="app-title"
+    >
+      <span
+        className="app-icon"
+      >
+        <svg
+          aria-hidden="true"
+          className="svg-inline--fa fa-moon fa-w-16 fa-1x "
+          data-icon="moon"
+          data-prefix="fas"
+          focusable="false"
+          role="img"
+          style={Object {}}
+          viewBox="0 0 512 512"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M283.211 512c78.962 0 151.079-35.925 198.857-94.792 7.068-8.708-.639-21.43-11.562-19.35-124.203 23.654-238.262-71.576-238.262-196.954 0-72.222 38.662-138.635 101.498-174.394 9.686-5.512 7.25-20.197-3.756-22.23A258.156 258.156 0 0 0 283.211 0c-141.309 0-256 114.511-256 256 0 141.309 114.511 256 256 256z"
+            fill="currentColor"
+            style={Object {}}
+          />
+        </svg>
+      </span>
+      Chiclet Yearly Planner
+    </h1>
+    <ul
+      className="nav-list"
+    >
+      <li>
+        Hello!
+      </li>
+    </ul>
+  </nav>
+  <main
+    className="app__main"
+  >
+    <div
+      className="container--landing"
+    >
+      <section
+        className="container--intro"
+      >
+        <div
+          className="intro"
+        >
+          <h3>
+            How to use Chiclet
+          </h3>
+          <p>
+            This app allows you to plan and keep track of your year by month. Add special events, goal deadlines, or focus themes to the months and the app provides a view your plans for the entire year. Alternatively, the app can be used as an accomplishment record keeper rather than a planner of future milestones. Either way, you have an interactive bird's eye view of the year.
+          </p>
+          <ul>
+            <li>
+              Log out and view options in the top right.
+            </li>
+            <li>
+              Click on a month to view just that month.
+            </li>
+            <li>
+              In the single month view, you can add items to the month.
+            </li>
+            <li>
+              Click the edit icon to the left of an item to edit, complete, or delete the item
+            </li>
+            <li>
+              <em>
+                Experience the app through the demo account:
+              </em>
+              <ul>
+                <li>
+                  User Name: HarryP
+                </li>
+                <li>
+                  Password: fluffy
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <div
+            className="container--btn"
+          >
+            <a
+              className="btn"
+              href="/login"
+              onClick={[Function]}
+            >
+              Log In
+            </a>
+            <a
+              className="btn"
+              href="/register"
+              onClick={[Function]}
+            >
+              Register
+            </a>
+          </div>
+        </div>
+      </section>
+      <section
+        className="container--month"
+      >
+        <div
+          className="month"
+        >
+          <h2
+            className="month__title"
+          >
+            January
+          </h2>
+          <ul>
+            <li>
+              Jennifer & Kyle Wedding (14th)
+            </li>
+            <li>
+              Try new recipes
+            </li>
+            <li>
+              Start book 1
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section
+        className="container--month"
+      >
+        <div
+          className="month"
+        >
+          <h2
+            className="month__title"
+          >
+            February
+          </h2>
+          <ul>
+            <li>
+              Career Conference (18th & 19th)
+            </li>
+            <li>
+              Reach new fitness goal
+            </li>
+            <li>
+              Finish book 1
+            </li>
+          </ul>
+        </div>
+      </section>
+      <section
+        className="container--month"
+      >
+        <div
+          className="month"
+        >
+          <h2
+            className="month__title"
+          >
+            March
+          </h2>
+          <ul>
+            <li>
+              Family Visiting (5th - 8th)
+            </li>
+            <li>
+              Start book 2
+            </li>
+            <li>
+              Spring Cleaning
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer
+    role="contentinfo"
+  >
+    Footer
+  </footer>
+</div>
+`;

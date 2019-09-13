@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types';
-import MONTHS from '../Utils/monthsList';
+import MONTHS from '../../Utils/monthsList';
 import Year from '../year/year'
 import MonthItems from './monthitems'
 import './months.css'

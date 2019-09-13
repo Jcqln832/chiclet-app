@@ -2,21 +2,25 @@ import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
-import apiContext from '../apiContext';
-// import config from '../config';
+import apiContext from '../../apiContext';
+import config from '../../config';
+import PrivateRoute from '../../Utils/PrivateRoute'
+import PublicOnlyRoute from '../../Utils/PublicOnlyRoute'
 import NavError from '../ErrorBoundaries/NavError';
 import AccountError from '../ErrorBoundaries/AccountError';
 import AppError from '../ErrorBoundaries/AppError';
-import MONTHS from '../Utils/monthsList';
-import ITEMS from '../Utils/itemsList';
-import USERS from '../Utils/usersList';
+import MONTHS from '../../Utils/monthsList';
+// import ITEMS from '../../Utils/itemsList';
+// import USERS from '../../Utils/usersList';
 import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
 import Months from '../months/months';
 import SingleMonth from '../month/month';
 import EditItem from '../EditItem/edititem';
-import Registration from '../Register/register';
-import Login from '../Login/login';
+import TokenService from '../../services/token-service'
+import ItemApiService from '../../services/item-api-service'
+import LoginPage from '../../routes/LoginPage/LoginPage'
+import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import Options from '../options/options';
 import './app.css';
 
@@ -24,32 +28,28 @@ const initYear = new Date().getFullYear()
 
 class App extends Component {
   state = {
-    items: ITEMS,
-    users: USERS,
+    items: [],
     year: initYear,
-    isLoggedIn: false
+    error: null,
   }
 
-  // componentDidMount() {
-  //   Promise.all([
-  //     fetch(`${config.API_ENDPOINT}/months`),
-  //   ])
-  //     .then((monthsRes) => {
-  //       if (!monthsRes.ok) {
-  //         return monthsRes.json().then(e => Promise.reject(e))
-  //       }
-  //       return 
-  //         monthsRes.json()
-  //     })
-  //     .then((items) => {
-  //       this.setState({ items })
-  //     })
-  //     .catch(error => {
-  //       console.error({ error })
-  //     })
-  // }
- 
+  componentDidMount() {
+    this.clearError()
+    ItemApiService.getItems()
+    .then((items) => {
+      this.setState({ items })
+      console.log(this.state.items)
+    })
+    .catch(error => {
+      console.error({ error })
+      this.setState({error})
+    })
+  }
 
+  clearError = () => {
+    this.setState({ error: null })
+  }
+ 
   deleteItem = itemId => {
     this.setState({
       items: this.state.items.filter(item => item.id !== itemId)
@@ -72,13 +72,13 @@ class App extends Component {
     })
   }
  
-  doRedirect = (itemId) => {
-    this.props.history.push(`/months`);
-  }
+  // doRedirect = (itemId) => {
+  //   this.props.history.push(`/months`);
+  // }
 
-  doLoginRedirect = () => {
-    this.props.history.push(`/login`);
-  }
+  // doLoginRedirect = () => {
+  //   this.props.history.push(`/login`);
+  // }
 
   incrementYear = () => {
     this.setState({
@@ -92,23 +92,24 @@ class App extends Component {
     })
   }
 
-  setLoggedIn = (bool) => {
-    console.log(bool);
-    this.setState({
-      isLoggedIn: bool
-    })
-  }
+  // setLoggedIn = (bool) => {
+  //   console.log(bool);
+  //   this.setState({
+  //     isLoggedIn: bool
+  //   })
+  // }
 
-  createNewUser = (user) => {
-    console.log(user);
-    this.setState({
-      users: [...this.state.users, user]
-    })
-    console.log(this.state.users);
-  }
+  // createNewUser = (user) => {
+  //   console.log(user);
+  //   this.setState({
+  //     user: [...this.state.user, user]
+  //   })
+  //   console.log(this.state.user);
+  // }
 
   handleClickLogout = () => {
-    this.setLoggedIn(false);
+    // this.setLoggedIn(false);
+    TokenService.clearAuthToken()
     this.props.history.push(`/`);
   }
 
@@ -139,12 +140,7 @@ class App extends Component {
         <nav className='app__nav'>
           <h1 className="app-title"><span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"}/></span>Chiclet Yearly Planner</h1>
           <NavError>
-            <Route 
-              path='/' 
-              render = {() =>
-                <AppNav isLoggedIn = {value.isLoggedIn} />
-              }
-            />
+            <AppNav  />
           </NavError>
         </nav>
         <main className='app__main'>
@@ -192,41 +188,27 @@ class App extends Component {
           />
           </AppError>
           <AccountError>
-          <Route
-            path='/register'
-            render = {() => 
-              <Registration
-                userslength = {value.users.length}
-                createNewUser = {value.createNewUser}
-                doLoginRedirect = {this.doLoginRedirect}
-              />
-            }
-          />
-          <Route
-          path='/login'
-          render = {(routeProps) =>
-            <Login
-              {...routeProps}
-              setLoggedIn = {this.setLoggedIn}
-              doRedirect = {this.doRedirect}
-              users = {value.users}
+            <PublicOnlyRoute
+              path={'/register'}
+              component={RegistrationPage}
             />
-          } 
-        />
+            <PublicOnlyRoute
+              path={'/login'}
+              component={LoginPage}
+            />
            <Route
-            path='/options'
-            render = {(routeProps) =>
-            <Options
-              {...routeProps}
-            />
-          } 
-        />
+              path='/options'
+              render = {(routeProps) =>
+                <Options
+                  {...routeProps}
+                />
+              }
+           />
         </AccountError>
         </main>
         <footer role="contentinfo">Footer</footer>
       </div>
       </apiContext.Provider>
-    
     )
   }
 }
