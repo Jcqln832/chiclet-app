@@ -2,14 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import Months from './months';
-import MONTHS from '../Utils/monthsList';
-import ITEMS from '../Utils/itemsList';
-import testWrapper from '../Utils/testHelpers';
+import MONTHS from '../../Utils/monthsList';
+import ITEMS from '../../Utils/itemsList';
+import testWrapper from '../../Utils/testHelpers';
 
 describe('12-month grid test', () => {
     const div = document.createElement('div');
     const items= ITEMS
-    const year = (new Date().getFullYear()).toString()
+    const year = (new Date().getFullYear())
     const prevButton = false
   
     it('renders without crashing', () => {

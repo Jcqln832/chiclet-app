@@ -159,20 +159,20 @@ class App extends Component {
                 path='/month/:monthId'
                 component = {SingleMonthPage}
               />
-              <PrivateRoute
+              {/* <PrivateRoute
                 path='/edit/:itemId'
                 component = {EditPage}
-              />
-              {/* <Route 
+              /> */}
+              <Route 
               path='/edit/:itemId'
               render={({ match }) =>
                 <EditItem
                   item={this.state.items.find(item => item.id === Number(match.params.itemId))}
-                  updateItem={value.updateItem}
-                  deleteItem={value.deleteItem}
+                  updateItem={this.updateItem}
+                  deleteItem={this.deleteItem}
                 />
               }
-              /> */}
+              />
             </AppError>
 
             <AccountError>

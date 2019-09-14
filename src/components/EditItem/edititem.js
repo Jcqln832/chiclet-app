@@ -68,7 +68,6 @@ class EditItem extends Component {
 
   // Validate item not empty and not too long. Return a message if so
   validateItem(updatedItem) {
-    // console.log(updatedItem.item)
     updatedItem.content = updatedItem.content.trim();
     if (updatedItem.content.length === 0) {
         return 'item content is required'
@@ -114,7 +113,7 @@ class EditItem extends Component {
   doFetch() {
     const itemId = this.props.item.id
     const completed = this.state.completed
-    const content = this.state.item
+    const content = this.state.content
 
     if(this.state.formValid) {
       console.log(this.state.formValid);

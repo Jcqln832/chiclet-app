@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import SingleMonth from './month';
-import MONTHS from '../Utils/monthsList';
-import ITEMS from '../Utils/itemsList';
-import testWrapper from '../Utils/testHelpers';
+import MONTHS from '../../Utils/monthsList';
+import ITEMS from '../../Utils/itemsList';
+import testWrapper from '../../Utils/testHelpers';
 
 describe('single month tests', () => {
     const div = document.createElement('div');

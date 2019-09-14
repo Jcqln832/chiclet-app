@@ -3,7 +3,5 @@
 exports[`list items test renders the UI as expected with a few items 1`] = `
 <li
   className="incomplete"
->
-  Second Item
-</li>
+/>
 `;

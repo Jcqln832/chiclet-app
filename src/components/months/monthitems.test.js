@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import MonthItems from './monthitems';
-import MONTHS from '../Utils/monthsList';
-import ITEMS from '../Utils/itemsList';
+import MONTHS from '../../Utils/monthsList';
+import ITEMS from '../../Utils/itemsList';
 
 describe('list items test', () => {
     const div = document.createElement('div');

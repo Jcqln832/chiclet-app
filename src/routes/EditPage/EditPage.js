@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import apiContext from '../../apiContext'
-import ItemApiService from '../../services/item-api-service'
 import EditItem from '../../components/EditItem/EditItem'
 
 export default class EditPage extends Component {

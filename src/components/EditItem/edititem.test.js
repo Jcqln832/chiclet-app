@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import renderer from 'react-test-renderer';
 import EditItem from './edititem';
-import ITEMS from '../Utils/itemsList';
-import testWrapper from '../Utils/testHelpers';
+import ITEMS from '../../Utils/itemsList';
+import testWrapper from '../../Utils/testHelpers';
 
 describe('single month list items tests', () => {
     const div = document.createElement('div');
