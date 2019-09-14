@@ -48,8 +48,8 @@ export default class Registration extends Component {
 handleSubmit = ev => {
   ev.preventDefault()
   const { user_name, password, password2 } = ev.target
-  const userValid = user_name.value.length < 40;
-  const pwValid = (password.value === password2.value) && (password.value.length < 30) && (password.value.length >= 8) ? true : false
+  const userValid = user_name.value.length < 20;
+  const pwValid = (password.value === password2.value) && (password.value.length < 20) && (password.value.length >= 8) ? true : false
 
   if(userValid && pwValid) {
     this.setState({ error: null })
@@ -67,7 +67,7 @@ handleSubmit = ev => {
       })
   } else {
     this.setState({
-      error: "Passwords must match. Password must be between 8 and 30 charaters. Username must be less than 40 characters. Please try again."
+      error: "Passwords must match. Password must be between 8 and 20 charaters. Username must be less than 20 characters. Please try again."
     })
   }
 }
