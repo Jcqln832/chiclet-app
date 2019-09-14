@@ -35,6 +35,6 @@ Months.defaultProps = {
 };
   
 Months.propTypes = {
-   year: PropTypes.string.isRequired,
+   year: PropTypes.number.isRequired,
    items: PropTypes.array.isRequired
 };

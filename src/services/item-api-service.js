@@ -43,7 +43,39 @@ const ItemApiService = {
           ? res.json().then(e => Promise.reject(e))
           : res.json()
       )
+  },
+  updateItem(content, completed, itemId) {
+    return fetch(`${config.API_ENDPOINT}/items/${itemId}`, {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+      },
+      body: JSON.stringify({
+        content,
+        completed,
+      }),
+    })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+  },
+  deleteItem(itemId) {
+    return fetch(`${config.API_ENDPOINT}/items/${itemId}`, {
+      method: 'DELETE',
+      headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`
+      },
+      })
+      .then(res =>
+        (!res.ok)
+          ? res.json().then(e => Promise.reject(e))
+          : res.json()
+      )
+    }
   }
-}
 
 export default ItemApiService

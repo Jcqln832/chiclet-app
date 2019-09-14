@@ -4,25 +4,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../../apiContext';
 import config from '../../config';
-import PrivateRoute, {authCheck} from '../../Utils/PrivateRoute'
+import PrivateRoute from '../../Utils/PrivateRoute'
 import PublicOnlyRoute from '../../Utils/PublicOnlyRoute'
 import NavError from '../ErrorBoundaries/NavError';
 import AccountError from '../ErrorBoundaries/AccountError';
 import AppError from '../ErrorBoundaries/AppError';
 import MONTHS from '../../Utils/monthsList';
-// import ITEMS from '../../Utils/itemsList';
-// import USERS from '../../Utils/usersList';
 import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
-
 import SingleMonth from '../month/month';
-import EditItem from '../EditItem/edititem';
+// import EditItem from '../EditItem/edititem';
 import TokenService from '../../services/token-service'
 import ItemApiService from '../../services/item-api-service'
 import LoginPage from '../../routes/LoginPage/LoginPage'
 import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import MonthsPage from '../../routes/MonthsPage/MonthsPage';
 import SingleMonthPage from '../../routes/SingleMonthPage/SingleMonthPage';
+import EditPage from '../../routes/EditPage/EditPage';
+import EditItem from '../EditItem/EditItem'
 import Options from '../options/options';
 import './app.css';
 
@@ -123,19 +122,15 @@ class App extends Component {
   render() {
     const value = {
       items: this.state.items,
-      users: this.state.users,
       year: this.state.year,
       completed: this.state.completed,
-      isLoggedIn: this.state.isLoggedIn,
       addItem: this.addItem,
       deleteItem: this.deleteItem,
       updateItem: this.updateItem,
       incrementYear: this.incrementYear,
       decrementYear: this.decrementYear,
       doRedirect: this.doRedirect,
-      createNewUser: this.createNewUser,
-      handleClickLogout: this.handleClickLogout,
-      // prevButton: this.prevButton
+      handleClickLogout: this.handleClickLogout
     }
 
     // const prevButton = value.year > new Date().getFullYear();
@@ -154,53 +149,40 @@ class App extends Component {
             <AppError>
               <Route
                 exact path='/'
-                component={Landing}
+                component = {Landing}
               />
               <PrivateRoute
                 path='/months'
-                component={MonthsPage}
+                component = {MonthsPage}
               />
-              <Route
+              <PrivateRoute
                 path='/month/:monthId'
                 component = {SingleMonthPage}
-                // render={({ match }) => {
-                //   const monthIndex = match.params.monthId;
-                //   const month = MONTHS.find(month => month.id === monthIndex.slice(4));
-                //   const componentProps = {
-                //     monthName: month.name,
-                //     monthIndex: monthIndex
-                //   }
-                //   const component = <SingleMonthPage>
-                
-                //     authCheck(componentProps, component)
-                //     {/* <SingleMonthPage
-                //       monthName={month.name}
-                //       monthIndex={monthIndex}
-                //     /> */}
-              
-                // }
-                
               />
-              <Route
+              <PrivateRoute
                 path='/edit/:itemId'
-                render={({ match }) =>
-                  <EditItem
-                    item={this.state.items.find(item => item.id === Number(match.params.itemId))}
-                    updateItem={value.updateItem}
-                    deleteItem={value.deleteItem}
-                  />
-                }
+                component = {EditPage}
               />
+              {/* <Route 
+              path='/edit/:itemId'
+              render={({ match }) =>
+                <EditItem
+                  item={this.state.items.find(item => item.id === Number(match.params.itemId))}
+                  updateItem={value.updateItem}
+                  deleteItem={value.deleteItem}
+                />
+              }
+              /> */}
             </AppError>
 
             <AccountError>
               <PublicOnlyRoute
                 path={'/register'}
-                component={RegistrationPage}
+                component = {RegistrationPage}
               />
               <PublicOnlyRoute
                 path={'/login'}
-                component={LoginPage}
+                component = {LoginPage}
               />
               <Route
                 path='/options'
