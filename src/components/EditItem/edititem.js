@@ -12,6 +12,7 @@ class EditItem extends Component {
   constructor(props) {
     super(props);
     console.log(props.item)
+    // const item = props.items.find(item => item.id === Number(this.props.match.params.itemId))
     //capture form inputs here to make a controlled form
     this.state = {
       content: this.props.item.content,
@@ -35,24 +36,27 @@ class EditItem extends Component {
   handleClickDelete = e => {
     e.preventDefault()
     const itemId = this.props.item.id
+    const index = this.props.item.index
     //perform deletion fetch
     ItemApiService.deleteItem(itemId)
     //remove item from app item state
     .then(this.props.deleteItem(itemId))
     //go back to month page
-    .then(this.doRedirect())
+    .then(this.doRedirect(index))
     .catch(this.context.setError)
   }
 
   //when editing done, go back to the month page
-  doRedirect = () => {
-    this.props.history.push(`/month/${this.props.item.index}`);
+  doRedirect = (index) => {
+    // this.props.history.push(`/month/${this.props.item.index}`);
+    this.props.history.push(`/month/${index}`);
   }
 
   itemChanged(item) {
     this.setState({
-      item: item })
-      console.log(this.state.item)
+      item: item
+    })
+    console.log(this.state.item)
   }
 
   completedChanged() {
@@ -112,11 +116,13 @@ class EditItem extends Component {
 
   doFetch() {
     const itemId = this.props.item.id
+    const index = this.props.item.index
     const completed = this.state.completed
     const content = this.state.content
 
     if(this.state.formValid) {
       console.log(this.state.formValid);
+      console.log(itemId);
       ItemApiService.updateItem(content, completed, itemId)
       .then(this.context.updateItem)
       .then(this.setState({
@@ -124,7 +130,7 @@ class EditItem extends Component {
         itemValid: false,
         formValid: false,
         error: "",
-      }))
+      }), this.doRedirect(index))
       .catch(this.context.setError)
     }
   }
@@ -200,10 +206,22 @@ class EditItem extends Component {
             <h2 className="month__title">Update Item</h2>
               <form className="form--edit" onSubmit={e => this.handleSubmit(e)}>
                 <label className="form__label--edit" htmlFor="edit-input">Edit:</label>
-                <input className="form__input--edit" type="text" name="update" id="edit-input" defaultValue={this.state.content} onChange={e => this.itemChanged(e.target.value)}/>
-                {<ValidationError hasError={!this.state.nameValid} message={this.state.validationMessages.name}/>}
+                <input 
+                  name="update" 
+                  className="form__input--edit" 
+                  type="text"  
+                  id="edit-input" 
+                  defaultValue={this.state.content} 
+                  onChange={e => this.itemChanged(e.target.value)}
+                />
+                {<ValidationError hasError={!this.state.nameValid} message= {this.state.validationMessages.name}
+                />}
                 {this.checkboxLabel()}
-                <input type="checkbox" id="completed" name="completed" onChange={e => this.completedChanged(e.target.value)}/>
+                <input 
+                  name="completed"
+                  type="checkbox" 
+                  id="completed"
+                  onChange={e => this.completedChanged(e.target.value)}/>
                 <button className="form__submit--edit" type="submit">Done</button>
               </form>
               <hr></hr>
@@ -221,7 +239,8 @@ export default withRouter(EditItem);
 EditItem.defaultProps = {
   history: {
     goBack: () => {}
-  }
+  },
+  item: {}
 }
 
 EditItem.propTypes = {

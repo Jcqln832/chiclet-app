@@ -46,10 +46,12 @@ class AddItem extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log("clicked!");
+    // newItem = this.refs.notes
     // Get item from state
     const item = this.state.content;
     // Validate before fetch attempt
-    this.validateForm(item);
+    this.validateForm(item)
+    // .then(notes.value= "")
   }
 
   validateForm(item) {
@@ -149,7 +151,7 @@ class AddItem extends Component {
           <form className="form--add" onSubmit={e => this.handleSubmit(e)}>
               <div className="field">
                 <label className="form--add__label"htmlFor="item-input">Add an item</label>
-                <input className="form--add__input" type="text" name="name" id="item-input" aria-label="new month item" aria-required="true" onChange={e => this.itemChanged(e.target.value)}/>
+                <input className="form--add__input" type="text" name="name" id="item-input" aria-label="new month item" aria-required="true" value={this.state.content} onChange={e => this.itemChanged(e.target.value)}/>
                 {<ValidationError hasError={!this.state.itemValid} message={this.state.error}/>}
               </div>
               <button className="form--add__submit" type="submit">

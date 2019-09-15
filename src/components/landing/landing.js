@@ -21,7 +21,7 @@ export default function Landing(props) {
                         <li><em>Experience the app through the demo account:</em>
                             <ul>
                                 <li>User Name: harryP</li>
-                                <li>Password: secretpw1*</li>
+                                <li>Password: secretPW1*</li>
                             </ul>
                         </li>
                     </ul>

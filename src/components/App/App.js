@@ -159,11 +159,11 @@ class App extends Component {
                 path='/month/:monthId'
                 component = {SingleMonthPage}
               />
-              {/* <PrivateRoute
+              <PrivateRoute
                 path='/edit/:itemId'
                 component = {EditPage}
-              /> */}
-              <Route 
+              />
+              {/* <Route 
               path='/edit/:itemId'
               render={({ match }) =>
                 <EditItem
@@ -172,7 +172,7 @@ class App extends Component {
                   deleteItem={this.deleteItem}
                 />
               }
-              />
+              /> */}
             </AppError>
 
             <AccountError>
