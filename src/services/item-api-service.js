@@ -56,7 +56,7 @@ const ItemApiService = {
         completed,
       }),
     })
-      .then(res =>
+      .then(res => 
         (!res.ok)
           ? res.json().then(e => Promise.reject(e))
           : res.json()
@@ -71,12 +71,10 @@ const ItemApiService = {
       },
       })
       .then(res => {
-        console.log(res)
         if(!res.ok){
           res.json().then(e => Promise.reject(e))
         }
-      }
-      )
+      })
     }
   }
 

@@ -18,10 +18,16 @@
   border: 2px solid rgb(212, 212, 212);
   padding: 1em;
   min-height: 250px;
+  background-color: #fff;
+}
+
+.month:hover {
+  border: 2px solid rgb(255, 195, 84);
 }
 
 .month--grid {
   max-width: 328.797px;
+  box-shadow: 0px 2px 4px rgba(10, 23, 29, 0.10);
 }
 
 .month__title {
@@ -31,6 +37,16 @@
 
 .month__itemList {
  word-break: break-word;
+
+}
+.month__itemList > li{
+   color: #191308;
+ }
+ .month__itemList > li:visited {
+  color: #191308;
+}
+.month__itemList > li:hover {
+  color: #191308;
 }
   
   /**** MEDIA QUERIES ****/

@@ -9,6 +9,7 @@ h2 {
     text-align: center;
     margin-left: 1em;
     margin-right: 1em;
+    color: #313d5a;
 }
 
 .btn-arrow {
@@ -16,4 +17,8 @@ h2 {
     background-color: transparent;
     border: 0px solid transparent;
     font-size: 1em;
+}
+
+.btn-arrow:hover {
+    color: #ffc354;
 }

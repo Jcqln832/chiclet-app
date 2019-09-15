@@ -1,22 +1,27 @@
 .app__nav {
-  background-color: lightgrey;
+  background-color: #183642;
   display: flex;
   flex-direction: row;
   justify-content:  space-between;
   align-items: center;
   flex: 0 0 auto;
+  min-height: auto;
+  max-height: 45px;
+  box-shadow: 0px 3px 8px rgba(10, 23, 29, 0.25);
 }
   
 .app-title {
   text-align: left;
   font-size: .95em;
   margin: 0 0 0 12px;
+  color: #EAEAEA;
 }
 
 .app-icon {
   display: inline-block;
   font-size: 1em;
   margin-right: 12px;
+  color: #f3de8a;
 }
   
 .nav-list {
@@ -52,5 +57,9 @@
     list-style-type: none;
     font-size: 16px;
     margin: 0 0 0 12px; 
+  }
+  .app__nav {
+    min-height: 50px;
+    max-height: auto;
   }
 }

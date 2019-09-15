@@ -15,6 +15,10 @@ body {
   flex-direction: column;
 }
 
+/* #root {
+  background-image: linear-gradient(to bottom, #eaeaea, #dddfe1, #cfd4d9, #bfcacf, #afc0c3);
+  background-repeat: no-repeat;
+} */
 /* .app-wrap {
   height: 100%;
   display: flex;
@@ -45,6 +49,7 @@ footer {
   margin-top: 50px;
   width: 100%;
   flex-shrink: 0;
+  background-color: #183642;
 }
 
 /**** MEDIA QUERIES ****/

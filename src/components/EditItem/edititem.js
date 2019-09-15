@@ -88,10 +88,10 @@ class EditItem extends Component {
     console.log("clicked!");
     // Get item text and completed from state -- construct udpated item object
     const updatedItem = {
-      id: this.props.item.id,
+      // id: this.props.item.id,
       content: this.state.content,
       completed: this.state.completed,
-      index: this.props.item.index
+      // index: this.props.item.index
     }
     // Validate before fetch attempt
     this.validateForm(updatedItem);
@@ -116,6 +116,7 @@ class EditItem extends Component {
 
   doFetch() {
     const itemId = this.props.item.id
+    console.log(itemId);
     const index = this.props.item.index
     const completed = this.state.completed
     const content = this.state.content
