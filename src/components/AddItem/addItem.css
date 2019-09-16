@@ -28,7 +28,9 @@
 }
 
 .form--add__input:focus {
-    outline-color: #33758f;
+    outline-color: #ffc354;
+    background-color: white;
+    outline-width: 4px;
 }
 
 .form--add__submit {
@@ -37,9 +39,9 @@
     top: 38px;
     height: 28px;
     border: 0px solid transparent;
-    background: #011c33;
+    background: #ffc354;
     font-weight: bold;
-    color: #fff;
+    color: #011c33;
     border-left: 1px solid;
     font-size: 14px;
     transition: .2s;

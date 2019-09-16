@@ -26,8 +26,8 @@ export default function Landing(props) {
                         </li>
                     </ul>
                     <div className="container--btn">
-                    <Link to="/login" className="btn" >Log In</Link>
-                    <Link to="/register" className="btn">Register</Link>
+                    <Link to="/login" className="btn btn--login" >Log In</Link>
+                    <Link to="/register" className="btn btn--register">Register</Link>
                     </div>  
                 </div>
             </section>  

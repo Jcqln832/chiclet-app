@@ -130,7 +130,9 @@ class App extends Component {
       incrementYear: this.incrementYear,
       decrementYear: this.decrementYear,
       doRedirect: this.doRedirect,
-      handleClickLogout: this.handleClickLogout
+      handleClickLogout: this.handleClickLogout,
+      setError: this.setError,
+      clearError: this.clearError
     }
 
     // const prevButton = value.year > new Date().getFullYear();

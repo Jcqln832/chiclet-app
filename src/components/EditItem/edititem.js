@@ -47,9 +47,8 @@ class EditItem extends Component {
   }
 
   //when editing done, go back to the month page
-  doRedirect = (index) => {
-    // this.props.history.push(`/month/${this.props.item.index}`);
-    this.props.history.push(`/month/${index}`);
+  doRedirect = () => {
+    this.props.history.goBack();
   }
 
   itemChanged(item) {
@@ -60,13 +59,13 @@ class EditItem extends Component {
   }
 
   completedChanged() {
-    // this.setState({
-    //   completed: !(this.state.completed) 
-    // })
+    this.setState({
+      completed: !(this.state.completed) 
+    })
     // console.log(this.state.completed)
-    this.setState(prevState => ({
-      completed: !prevState.completed
-    }));
+    // this.setState(prevState => ({
+    //   completed: !prevState.completed
+    // }));
     console.log(this.state.completed)
   }
 
@@ -117,21 +116,24 @@ class EditItem extends Component {
   doFetch() {
     const itemId = this.props.item.id
     console.log(itemId);
-    const index = this.props.item.index
+    // const index = this.props.item.index
     const completed = this.state.completed
     const content = this.state.content
+    const updatedItem = {
+      content: content,
+      completed: completed
+    }
 
     if(this.state.formValid) {
       console.log(this.state.formValid);
       console.log(itemId);
       ItemApiService.updateItem(content, completed, itemId)
-      .then(this.context.updateItem)
+      .then(this.props.updateItem(updatedItem))
       .then(this.setState({
-        content: "",
         itemValid: false,
         formValid: false,
         error: "",
-      }), this.doRedirect(index))
+      }), this.doRedirect)
       .catch(this.context.setError)
     }
   }

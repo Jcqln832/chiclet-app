@@ -38,15 +38,21 @@
 .nav-list > li > a {
   font-weight: bold;
   text-decoration: none;
-  color: darkslategray;
+  color: #eaeaea;
+}
+
+.greeting {
+  color: #f3de8a;
 }
 
 .nav-list__btn-logout {
   font-weight: bold;
-  color: darkslategray;
+  color: #eaeaea;
   font-size: inherit;
   border: 0px;
-  background-color: lightgrey;
+  background-color: transparent;
+  margin-right: 12px;
+  cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {

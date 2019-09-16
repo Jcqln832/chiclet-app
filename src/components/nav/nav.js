@@ -11,7 +11,7 @@ const AppNav = (props) => {
             {
               TokenService.hasAuthToken()
               ?  <NavLinks />
-              : <li>Hello!</li>
+              : <li className ="greeting">Hello!</li>
             }
         </ul>
     )

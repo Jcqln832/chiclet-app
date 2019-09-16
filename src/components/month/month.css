@@ -39,13 +39,12 @@
 .edit-btn {
   margin-right: 10px;
   border: 0px;
-  font-size: 14px;
+  font-size: 15px;
   color: #011c33;
 }
 
 .edit-btn:hover {
   cursor: pointer;
-  color: #33758f;
 }
 
 .container--title {
@@ -63,7 +62,12 @@
   left: 0;
   cursor: pointer;
   padding: 0px 15px 0px 0px;
-  color: #33758f;
+  color: #011c33;
+  transition: all .2s ease-in-out; 
+}
+
+.arrow-back:hover {
+  transform: scale(1.1);
 }
 
 .complete {
