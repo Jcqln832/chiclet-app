@@ -3,11 +3,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-  }
+}
   
-  .container--1month {
+.container--1month {
     width: 100%;
-  }
+}
 
 .form--edit {
     position: relative;
@@ -30,7 +30,7 @@
     height: 30px;
     box-sizing: border-box;
     padding: 6px;
-    background-color: #ecebeb;
+    background-color: #fff;
 }
 
 .form__submit--edit {
@@ -38,10 +38,13 @@
     font-size: 14px;
     font-weight: bold;
     display: block;
-    background-color: #ecebeb;
+    background-color: #eaeaea;
     width: 25%;
     margin: 25px 0px 15px 0px;
     padding: 10px 0px;
+    color: #3e5c76;
+    border: 2px solid #3e5c76;
+    cursor: pointer;
 }
 
 .button--delete {
@@ -52,4 +55,8 @@
     font-size: 1em;
     margin-top: 35px;
     padding: 10px 0px;
+    background-color: #eaeaea;
+    color: #d46966;
+    border: 2px solid  #d46966;
+    cursor: pointer;
 }

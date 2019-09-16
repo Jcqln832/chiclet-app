@@ -45,7 +45,7 @@
 
 .edit-btn:hover {
   cursor: pointer;
-  color: #034275;
+  color: #33758f;
 }
 
 .container--title {
@@ -63,6 +63,7 @@
   left: 0;
   cursor: pointer;
   padding: 0px 15px 0px 0px;
+  color: #33758f;
 }
 
 .complete {

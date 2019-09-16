@@ -24,7 +24,11 @@
     height: 30px;
     box-sizing: border-box;
     padding: 6px;
-    background-color: #ecebeb;
+    background-color: #fff;
+}
+
+.form--add__input:focus {
+    outline-color: #33758f;
 }
 
 .form--add__submit {
@@ -38,8 +42,9 @@
     color: #fff;
     border-left: 1px solid;
     font-size: 14px;
+    transition: .2s;
 }
 
 .form--add__submit:hover {
-    background: #034275; 
+    background: #ffc354;
 }
