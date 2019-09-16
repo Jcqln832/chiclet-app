@@ -41,8 +41,9 @@
   color: #eaeaea;
 }
 
-.greeting {
+.nav-list > li.greeting {
   color: #f3de8a;
+  font-size: 1.125em;
 }
 
 .nav-list__btn-logout {
@@ -61,8 +62,10 @@
   }
   .nav-list {
     list-style-type: none;
-    font-size: 16px;
     margin: 0 0 0 12px; 
+  }
+  .nav-list > li {
+    font-size: 1em;
   }
   .app__nav {
     min-height: 50px;

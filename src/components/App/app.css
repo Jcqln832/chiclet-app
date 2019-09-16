@@ -15,6 +15,14 @@ body {
   flex-direction: column;
 }
 
+h1,h2,h3 {
+  font-family: "Open Sans";
+}
+
+li, a, p {
+  font-family: "Karla";
+}
+
 /* #root {
   background-image: linear-gradient(to bottom, #eaeaea, #dddfe1, #cfd4d9, #bfcacf, #afc0c3);
   background-repeat: no-repeat;

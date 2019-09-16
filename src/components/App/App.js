@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import { Route, withRouter, Switch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../../apiContext';
@@ -23,6 +23,7 @@ import SingleMonthPage from '../../routes/SingleMonthPage/SingleMonthPage';
 import EditPage from '../../routes/EditPage/EditPage';
 import EditItem from '../EditItem/EditItem'
 import Options from '../options/options';
+import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import './app.css';
 
 const initYear = new Date().getFullYear()
@@ -148,6 +149,8 @@ class App extends Component {
             </NavError>
           </nav>
           <main className='app__main'>
+          {this.state.hasError && <p className='red'>There was an error! Oh no!</p>}
+          <Switch>
             <AppError>
               <Route
                 exact path='/'
@@ -194,7 +197,11 @@ class App extends Component {
                   />
                 }
               />
+              <Route
+              component={NotFoundPage}
+            />
             </AccountError>
+            </Switch>
           </main>
           <footer role="contentinfo">Footer</footer>
         </div>

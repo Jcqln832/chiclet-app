@@ -36,7 +36,9 @@ exports[`General App test renders the UI as expected 1`] = `
     <ul
       className="nav-list"
     >
-      <li>
+      <li
+        className="greeting"
+      >
         Hello!
       </li>
     </ul>
@@ -81,7 +83,7 @@ exports[`General App test renders the UI as expected 1`] = `
                   User Name: harryP
                 </li>
                 <li>
-                  Password: secretpw1*
+                  Password: secretPW1*
                 </li>
               </ul>
             </li>
@@ -90,14 +92,14 @@ exports[`General App test renders the UI as expected 1`] = `
             className="container--btn"
           >
             <a
-              className="btn"
+              className="btn btn--login"
               href="/login"
               onClick={[Function]}
             >
               Log In
             </a>
             <a
-              className="btn"
+              className="btn btn--register"
               href="/register"
               onClick={[Function]}
             >

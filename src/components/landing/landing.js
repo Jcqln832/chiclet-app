@@ -20,8 +20,8 @@ export default function Landing(props) {
                         <li>Click the edit icon to the left of an item to edit, complete, or delete the item</li>
                         <li><em>Experience the app through the demo account:</em>
                             <ul>
-                                <li>User Name: harryP</li>
-                                <li>Password: secretPW1*</li>
+                                <li>User Name: <b>harryP</b></li>
+                                <li>Password: <b>secretPW1!</b></li>
                             </ul>
                         </li>
                     </ul>
