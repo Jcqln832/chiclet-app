@@ -12,7 +12,8 @@ const apiContext = React.createContext({
   doRedirect: () => {},
   updateItem: () => {},
   deleteItem: () => {},
-  setItemsList: () => {}
+  setItemsList: () => {},
+  fetchItems: () => {}
 })
 
 export default apiContext;

@@ -53,9 +53,9 @@ class EditItem extends Component {
     this.props.history.goBack();
   }
 
-  itemChanged(item) {
+  itemChanged(content) {
     this.setState({
-      item: item
+      content
     })
     console.log(this.state.item)
   }
@@ -128,14 +128,18 @@ class EditItem extends Component {
       completed: completed
     }
 
+    console.log(updatedItem);
+
     if(this.state.formValid) {
       console.log(this.state.formValid);
       console.log(itemId);
       ItemApiService.updateItem(content, completed, itemId)
       // .then(ItemApiService.getItem(itemId))
-      .then(this.props.updateItem(updatedItem))
+      .then(() => {this.props.updateItem(updatedItem)
+      console.log(this.state)
+      })
       // .then(this.props.updateItem(updatedItem))
-      .then(this.setState({
+      .then(() => this.setState({
         itemValid: false,
         formValid: false,
         error: "",

@@ -35,6 +35,13 @@ class App extends Component {
     error: null,
   }
 
+  fetchItems = () => {
+    this.clearError()
+    ItemApiService.getItems()
+      .then(this.setItemsList)
+      .catch(this.setError)
+  }
+
   clearError = () => {
     this.setState({ error: null })
   }
@@ -75,10 +82,6 @@ class App extends Component {
     this.props.history.push(`/months`);
   }
 
-  // doLoginRedirect = () => {
-  //   this.props.history.push(`/login`);
-  // }
-
   incrementYear = () => {
     this.setState({
       year: this.state.year + 1
@@ -90,7 +93,6 @@ class App extends Component {
       year: this.state.year - 1
     })
   }
-
 
   handleClickLogout = () => {
     TokenService.clearAuthToken()
@@ -110,76 +112,62 @@ class App extends Component {
       doRedirect: this.doRedirect,
       handleClickLogout: this.handleClickLogout,
       setError: this.setError,
-      clearError: this.clearError
+      clearError: this.clearError,
+      fetchItems: this.fetchItems
     }
-
-    // const prevButton = value.year > new Date().getFullYear();
 
     return (
 
       <apiContext.Provider value={value}>
         <div className='App'>
           <nav className='app__nav'>
-            <h1 className="app-title"><span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"} /></span>Chiclet Yearly Planner</h1>
+            <h1 className="app-title">
+              <span className="app-icon"><FontAwesomeIcon icon={faMoon} size={"1x"} /></span>
+              Chiclet Yearly Planner
+            </h1>
             <NavError>
               <AppNav />
             </NavError>
           </nav>
           <main className='app__main'>
-          {this.state.hasError && <p className='red'>There was an error! Oh no!</p>}
-          <Switch>
-            {/* <AppError> */}
-              <PublicOnlyRoute
-                exact path='/'
-                component = {Landing}
-              />
-              <PrivateRoute
-                path='/months'
-                component = {MonthsPage}
-              />
-              <PrivateRoute
-                path='/month/:monthId'
-                component = {SingleMonthPage}
-              />
-              {/* <PrivateRoute
-                path='/edit/:itemId'
-                component = {EditPage}
-              /> */}
-              <Route 
+          {this.state.hasError && <p className='red'>There was an error!</p>}
+          <Switch>        
+            <PublicOnlyRoute
+              exact path='/'
+              component = {Landing}
+            />
+            <PrivateRoute
+              exact path='/months'
+              component = {MonthsPage}
+            />
+            <PrivateRoute
+              path='/month/:monthId'
+              component = {SingleMonthPage}
+            />
+            <PrivateRoute
               path='/edit/:itemId'
-              render={({ match }) =>
-                <EditItem
-                  item={value.items.find(item => item.id === Number(match.params.itemId))}
-                  updateItem={this.updateItem}
-                  deleteItem={this.deleteItem}
+              component = {EditPage}
+            />
+            <PublicOnlyRoute
+              exact path={'/register'}
+              component = {RegistrationPage}
+            />
+            <PublicOnlyRoute
+              exact path={'/login'}
+              component = {LoginPage}
+            />
+            <Route
+              exact path='/options'
+              render={(routeProps) =>
+                <Options
+                  {...routeProps}
                 />
-                
               }
-              />
-            {/* </AppError> */}
-
-            {/* <AccountError> */}
-              <PublicOnlyRoute
-                path={'/register'}
-                component = {RegistrationPage}
-              />
-              <PublicOnlyRoute
-                path={'/login'}
-                component = {LoginPage}
-              />
-              <Route
-                path='/options'
-                render={(routeProps) =>
-                  <Options
-                    {...routeProps}
-                  />
-                }
-              />
-              <Route
-                component={NotFoundPage}
-              />
-            {/* </AccountError> */}
-            </Switch>
+            />
+            <Route
+              component={NotFoundPage}
+            />
+          </Switch>
           </main>
           <footer role="contentinfo">Footer</footer>
         </div>

@@ -8,12 +8,17 @@ import SingleMonth from '../../components/month/month'
 export default class SingleMonthPage extends Component {
   static contextType = apiContext;
 
+  componentDidMount() {
+    this.context.fetchItems()
+  }
+
   render() {
     const monthIndex = this.props.match.params.monthId;
     console.log(monthIndex);
     const month = MONTHS.find(month => month.id === monthIndex.slice(4));
     console.log(month);
     const {items, year, doRedirect} = this.context;
+    console.log(this.context)
       
     return (
         <SingleMonth 

@@ -8,10 +8,7 @@ export default class MonthsPage extends Component {
   static contextType = apiContext
 
   componentDidMount() {
-    this.context.clearError()
-    ItemApiService.getItems()
-      .then(this.context.setItemsList)
-      .catch(this.context.setError)
+    this.context.fetchItems()
   }
 
   render() {
@@ -19,9 +16,9 @@ export default class MonthsPage extends Component {
     const prevButton = this.context.year > new Date().getFullYear();
     return (
         <Months 
-            items= {this.context.items} 
+            items={this.context.items} 
             year={year}
-            prevButton = {prevButton}
+            prevButton={prevButton}
         />
     )
   }

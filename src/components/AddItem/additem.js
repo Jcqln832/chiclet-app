@@ -46,17 +46,14 @@ class AddItem extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log("clicked!");
-    // newItem = this.refs.notes
     // Get item from state
     const item = this.state.content;
     // Validate before fetch attempt
     this.validateForm(item)
-    // .then(notes.value= "")
   }
 
   validateForm(item) {
-   const itemMessage =  this.validateItem(item);
-
+    const itemMessage =  this.validateItem(item);
     this.setState({
       error: itemMessage,
       itemValid: !itemMessage,
@@ -75,7 +72,7 @@ class AddItem extends Component {
     const index = Number(this.props.monthIndex)
 
     if(this.state.formValid) {
-      console.log(this.state.formValid);
+      // console.log(this.state.formValid);
       ItemApiService.postItem(content, index)
       .then(this.context.addItem)
       .then(this.setState({
@@ -85,64 +82,8 @@ class AddItem extends Component {
         error: "",
       }))
       .catch(this.context.setError)
-
- 
-  //   const options = {
-  //     method: 'POST',
-  //     body: JSON.stringify({
-  //         item: item,
-  //         month: month,
-  //         index: index
-  //     }),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     }
-  //   }
-  //   console.log(options)
-
-    // this.context.addItem(
-    //   {
-    //     // id: this.context.items.length + 1,
-    //     content: content,
-    //     // author: "signedinUser",
-    //     month: month,
-    //     index: Number(index)
-    //   }
-    // )
   }
 }
-
-    // put the data into STORE(db)
-    // fetch(url, options)
-    // .then(res => {
-    //   if(!res.ok) {
-    //     throw new Error('Something went wrong, please try again later.')
-    //   }
-    //   return res.json()
-    // })
-    // .then(data => {
-    //   // clear for next entry
-    //   this.setState({
-    //     item: "",
-    //     }, () => {this.props.addItem(  //add item from database into app state (incudling auto incremented item id#)
-    //     {
-    //         // id: data.id,
-    //         // item: "data.item",
-    //         // author: "data.author",
-    //         // month: "data.month",
-    //         // index: data.index
-    //       },
-    //     )}
-    //   );
-    //   console.log("I ran");
-    // })
-    // .catch(err => {
-    //   this.setState({
-    //     error: err.message
-    //   });
-    // });
-//   }
-// }
 
   render () {
     // const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
@@ -170,7 +111,3 @@ AddItem.defaultProps = {
     goBack: () => {}
   }
 }
-
-// AddItem.propTypes = {
-//   addItem: PropTypes.func.isRequired
-// };
