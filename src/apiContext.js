@@ -11,7 +11,8 @@ const apiContext = React.createContext({
   handleClickLogout: () => {},
   doRedirect: () => {},
   updateItem: () => {},
-  deleteItem: () => {}
+  deleteItem: () => {},
+  setItemsList: () => {}
 })
 
 export default apiContext;

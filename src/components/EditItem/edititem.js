@@ -4,6 +4,7 @@ import {withRouter} from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import ValidationError from '../../ValidationError';
+import apiContext from '../../apiContext'
 import PropTypes from 'prop-types';
 import './edititem.css'
 import ItemApiService from '../../services/item-api-service';
@@ -24,6 +25,7 @@ class EditItem extends Component {
       }
     }
   }
+  static contextType = apiContext;
 
   // which one to render in the form
   checkboxLabel = () => {
@@ -59,8 +61,9 @@ class EditItem extends Component {
   }
 
   completedChanged() {
+    const status = this.state.completed
     this.setState({
-      completed: !(this.state.completed) 
+      completed: !status
     })
     // console.log(this.state.completed)
     // this.setState(prevState => ({
@@ -120,6 +123,7 @@ class EditItem extends Component {
     const completed = this.state.completed
     const content = this.state.content
     const updatedItem = {
+      id: itemId,
       content: content,
       completed: completed
     }
@@ -128,12 +132,17 @@ class EditItem extends Component {
       console.log(this.state.formValid);
       console.log(itemId);
       ItemApiService.updateItem(content, completed, itemId)
+      // .then(ItemApiService.getItem(itemId))
       .then(this.props.updateItem(updatedItem))
+      // .then(this.props.updateItem(updatedItem))
       .then(this.setState({
         itemValid: false,
         formValid: false,
         error: "",
-      }), this.doRedirect)
+      }))
+      .then(
+        this.doRedirect
+        )
       .catch(this.context.setError)
     }
   }

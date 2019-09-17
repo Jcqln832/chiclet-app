@@ -35,19 +35,6 @@ class App extends Component {
     error: null,
   }
 
-  componentDidMount() {
-    this.clearError()
-    ItemApiService.getItems()
-      .then((items) => {
-        this.setState({ items })
-        console.log(this.state.items)
-      })
-      .catch(error => {
-        console.error({ error })
-        this.setState({ error })
-      })
-  }
-
   clearError = () => {
     this.setState({ error: null })
   }
@@ -55,6 +42,10 @@ class App extends Component {
   setError = error => {
     console.error(error)
     this.setState({ error })
+  }
+
+  setItemsList = items => {
+    this.setState({ items })
   }
 
   deleteItem = itemId => {
@@ -72,6 +63,7 @@ class App extends Component {
   }
 
   updateItem = updatedItem => {
+    console.log(updatedItem);
     this.setState({
       items: this.state.items.map(item =>
         (item.id !== updatedItem.id) ? item : updatedItem
@@ -99,23 +91,8 @@ class App extends Component {
     })
   }
 
-  // setLoggedIn = (bool) => {
-  //   console.log(bool);
-  //   this.setState({
-  //     isLoggedIn: bool
-  //   })
-  // }
-
-  // createNewUser = (user) => {
-  //   console.log(user);
-  //   this.setState({
-  //     user: [...this.state.user, user]
-  //   })
-  //   console.log(this.state.user);
-  // }
 
   handleClickLogout = () => {
-    // this.setLoggedIn(false);
     TokenService.clearAuthToken()
     this.props.history.push(`/`);
   }
@@ -124,10 +101,10 @@ class App extends Component {
     const value = {
       items: this.state.items,
       year: this.state.year,
-      completed: this.state.completed,
       addItem: this.addItem,
       deleteItem: this.deleteItem,
       updateItem: this.updateItem,
+      setItemsList: this.setItemsList,
       incrementYear: this.incrementYear,
       decrementYear: this.decrementYear,
       doRedirect: this.doRedirect,
@@ -151,8 +128,8 @@ class App extends Component {
           <main className='app__main'>
           {this.state.hasError && <p className='red'>There was an error! Oh no!</p>}
           <Switch>
-            <AppError>
-              <Route
+            {/* <AppError> */}
+              <PublicOnlyRoute
                 exact path='/'
                 component = {Landing}
               />
@@ -164,23 +141,24 @@ class App extends Component {
                 path='/month/:monthId'
                 component = {SingleMonthPage}
               />
-              <PrivateRoute
+              {/* <PrivateRoute
                 path='/edit/:itemId'
                 component = {EditPage}
-              />
-              {/* <Route 
+              /> */}
+              <Route 
               path='/edit/:itemId'
               render={({ match }) =>
                 <EditItem
-                  item={this.state.items.find(item => item.id === Number(match.params.itemId))}
+                  item={value.items.find(item => item.id === Number(match.params.itemId))}
                   updateItem={this.updateItem}
                   deleteItem={this.deleteItem}
                 />
+                
               }
-              /> */}
-            </AppError>
+              />
+            {/* </AppError> */}
 
-            <AccountError>
+            {/* <AccountError> */}
               <PublicOnlyRoute
                 path={'/register'}
                 component = {RegistrationPage}
@@ -198,9 +176,9 @@ class App extends Component {
                 }
               />
               <Route
-              component={NotFoundPage}
-            />
-            </AccountError>
+                component={NotFoundPage}
+              />
+            {/* </AccountError> */}
             </Switch>
           </main>
           <footer role="contentinfo">Footer</footer>

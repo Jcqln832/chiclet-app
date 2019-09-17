@@ -56,11 +56,14 @@ const ItemApiService = {
         completed,
       }),
     })
-      .then(res => 
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
+      .then(res => {
+        // (!res.ok)
+        //   ? res.json().then(e => Promise.reject(e))
+        //   : res.json()
+        if(!res.ok){
+          res.json().then(e => Promise.reject(e))
+        }
+      })
   },
   deleteItem(itemId) {
     return fetch(`${config.API_ENDPOINT}/items/${itemId}`, {
