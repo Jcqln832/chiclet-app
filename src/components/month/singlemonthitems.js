@@ -5,7 +5,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons'
 import PropTypes from 'prop-types';
 
 export default function SingleMonthItems(props) {
-    console.log(props);
+    // console.log(props);
     return (
         <>
         {props.monthItems.map(item =>

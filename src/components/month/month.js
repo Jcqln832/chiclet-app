@@ -6,7 +6,7 @@ import SingleMonthItems from './singlemonthitems'
 import './month.css'
 
 export default function SingleMonth(props) {
-    console.log(props.monthItems)
+    // console.log(props.monthItems)
   
     return (
         <>

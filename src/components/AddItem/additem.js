@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-// import config from '../config';
 import {withRouter} from 'react-router-dom';
 import ValidationError from '../../ValidationError';
 import apiContext from '../../apiContext';
+import ItemApiService from '../../services/item-api-service';
 import PropTypes from 'prop-types';
 import './addItem.css'
-import ItemApiService from '../../services/item-api-service';
-// import MonthItems from '../months/monthitems';
 
 class AddItem extends Component {
   static contextType = apiContext;
@@ -23,7 +21,6 @@ class AddItem extends Component {
 
   itemChanged(content) {
     this.setState({content})
-    console.log(this.state.content)
   }
 
   // Validate item not empty and not too long. Return a message if so.
@@ -45,7 +42,6 @@ class AddItem extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("clicked!");
     // Get item from state
     const item = this.state.content;
     // Validate before fetch attempt
@@ -72,7 +68,6 @@ class AddItem extends Component {
     const index = Number(this.props.monthIndex)
 
     if(this.state.formValid) {
-      // console.log(this.state.formValid);
       ItemApiService.postItem(content, index)
       .then(this.context.addItem)
       .then(this.setState({

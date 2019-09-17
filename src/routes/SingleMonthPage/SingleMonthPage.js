@@ -14,11 +14,8 @@ export default class SingleMonthPage extends Component {
 
   render() {
     const monthIndex = this.props.match.params.monthId;
-    console.log(monthIndex);
     const month = MONTHS.find(month => month.id === monthIndex.slice(4));
-    console.log(month);
     const {items, year, doRedirect} = this.context;
-    console.log(this.context)
       
     return (
         <SingleMonth 

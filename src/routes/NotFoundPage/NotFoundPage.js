@@ -5,7 +5,6 @@ import ramImg from './img/ram-600.jpg'
 export default class NotFoundPage extends Component {
   render() {
 
-    console.log("anything")
     return (
       <div className="container--grid-single">
       <section className='NotFoundPage container--1month'>
@@ -16,4 +15,5 @@ export default class NotFoundPage extends Component {
       </div>
     )
   }
+  
 }

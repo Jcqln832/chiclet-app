@@ -12,13 +12,11 @@ export default class EditPage extends Component {
     // console.log(updateItem)
 
     return (
-        <AppError>
         <EditItem
             item = {this.context.items.find(item => item.id === Number(this.props.match.params.itemId))}
             updateItem = {this.context.updateItem}
             deleteItem = {this.context.deleteItem}
         />
-        </AppError>
     )
   }
 }

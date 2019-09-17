@@ -35,6 +35,10 @@ class App extends Component {
     error: null,
   }
 
+  componentDidMount() {
+    this.fetchItems()
+  }
+
   fetchItems = () => {
     this.clearError()
     ItemApiService.getItems()
@@ -62,15 +66,15 @@ class App extends Component {
   }
 
   addItem = (item) => {
-    console.log(item);
+    // console.log(item);
     this.setState({
       items: [...this.state.items, item]
     })
-    console.log(this.state.items);
+    // console.log(this.state.items);
   }
 
   updateItem = updatedItem => {
-    console.log(updatedItem);
+    // console.log(updatedItem);
     this.setState({
       items: this.state.items.map(item =>
         (item.id !== updatedItem.id) ? item : updatedItem

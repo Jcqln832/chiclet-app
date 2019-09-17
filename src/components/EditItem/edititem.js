@@ -12,8 +12,7 @@ import ItemApiService from '../../services/item-api-service';
 class EditItem extends Component {
   constructor(props) {
     super(props);
-    console.log(props.item)
-    // const item = props.items.find(item => item.id === Number(this.props.match.params.itemId))
+    // console.log(props.item)
     //capture form inputs here to make a controlled form
     this.state = {
       content: this.props.item.content,
@@ -65,11 +64,10 @@ class EditItem extends Component {
     this.setState({
       completed: !status
     })
-    // console.log(this.state.completed)
     // this.setState(prevState => ({
     //   completed: !prevState.completed
     // }));
-    console.log(this.state.completed)
+    // console.log(this.state.completed)
   }
 
   // Validate item not empty and not too long. Return a message if so
@@ -87,7 +85,6 @@ class EditItem extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log("clicked!");
     // Get item text and completed from state -- construct udpated item object
     const updatedItem = {
       // id: this.props.item.id,
@@ -118,8 +115,6 @@ class EditItem extends Component {
 
   doFetch() {
     const itemId = this.props.item.id
-    console.log(itemId);
-    // const index = this.props.item.index
     const completed = this.state.completed
     const content = this.state.content
     const updatedItem = {
@@ -128,16 +123,11 @@ class EditItem extends Component {
       completed: completed
     }
 
-    console.log(updatedItem);
-
     if(this.state.formValid) {
-      console.log(this.state.formValid);
-      console.log(itemId);
+  
       ItemApiService.updateItem(content, completed, itemId)
       // .then(ItemApiService.getItem(itemId))
-      .then(() => {this.props.updateItem(updatedItem)
-      console.log(this.state)
-      })
+      .then(() => this.props.updateItem(updatedItem))
       // .then(this.props.updateItem(updatedItem))
       .then(() => this.setState({
         itemValid: false,
@@ -150,58 +140,6 @@ class EditItem extends Component {
       .catch(this.context.setError)
     }
   }
-
-
-//   doFetch() {
-//     // const url = `${config.API_ENDPOINT}/edit/:itemId`;
-//     const item = this.state.item;
-//     const index = this.props.monthIndex
-
-//     if(this.state.formValid) {
-//       console.log(this.state.formValid);
-//       const options = {
-//       method: 'PATCH',
-//       body: JSON.stringify({
-//           item: item,
-//           index: index
-//       }),
-//       headers: {
-//         "Content-Type": "application/json",
-//       }
-//     }
-//     console.log(options)
-
-//     // put the data into STORE(db)
-//     fetch(url, options)
-//     .then(res => {
-//       if(!res.ok) {
-//         throw new Error('Something went wrong, please try again later.')
-//       }
-//       return res.json()
-//     })
-//     .then(data => {
-//       // clear for next entry
-//       this.setState({
-//         item: "",
-//         }, () => {this.props.updateItem(
-//         {
-//             // id: 1,
-//             // item: "First Item",
-//             // author: "reggie",
-//             // month: "January",
-//             // index: 201901
-//           },
-//         )}
-//       );
-//       console.log("I ran");
-//     })
-//     .catch(err => {
-//       this.setState({
-//         error: err.message
-//       });
-//     });
-//   }
-// }
 
   render () {
     // const error = this.state.error ? <div className="error">{this.state.error}</div> : "";
