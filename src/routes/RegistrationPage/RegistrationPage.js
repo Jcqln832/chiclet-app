@@ -10,16 +10,23 @@ export default class RegistrationPage extends Component {
 
   handleRegistrationSuccess = user => {
   // get logged in
-    
+
   //go to months page
+    // const { history } = this.props
+    // history.push('/login')
+
+  
+  }
+
+  doRedirect = user => {
     const { history } = this.props
-    history.push('/login')
+    history.push('/months')
   }
 
   render() {
     return (
         <Registration
-          onRegistrationSuccess={this.handleRegistrationSuccess}
+          doRedirect={this.doRedirect}
         />
     )
   }

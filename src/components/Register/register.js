@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import AuthApiService from '../../services/auth-api-service'
+import TokenService from '../../services/token-service'
 import './register.css'
 
 export default class Registration extends Component {
@@ -8,6 +9,7 @@ export default class Registration extends Component {
   }
 
   state = { error: null }
+
 
 //   handleSubmit = ev => {
 //     ev.preventDefault()
@@ -47,8 +49,23 @@ export default class Registration extends Component {
 
 handleSubmit = ev => {
   ev.preventDefault()
+  const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]/;
+  const pwError = null;
   const { user_name, password, password2 } = ev.target
   const userValid = user_name.value.length < 20;
+  if (password.startsWith(' ') || password.endsWith(' ')) {
+    pwError = 'Password must not start or end with empty spaces'
+  }
+if (REGEX_UPPER_LOWER_NUMBER_SPECIAL.test(password) == false) {
+    pwError = 'Password must contain 1 upper case, lower case, number and special character'
+ }
+ if(!(password.value.length < 20) && (password.value.length >= 8)) {
+  pwError = "Passwords must be at least 8 characters and not more than 20 characters"
+ }
+ if(!password.value === password2.value) {
+   pwError = "Passwords must match"
+ }
+
   const pwValid = (password.value === password2.value) && (password.value.length < 20) && (password.value.length >= 8) ? true : false
 
   if(userValid && pwValid) {
@@ -57,7 +74,13 @@ handleSubmit = ev => {
        user_name: user_name.value,
        password: password.value,
       })
-      
+      .then(res => {
+        user_name.value = ''
+        password.value = ''
+        TokenService.saveAuthToken(res.authToken)
+        this.props.doRedirect()
+      })
+
       // AuthApiService.postLogin({
       //   user_name: user_name.value,
       //   password: password.value,
@@ -100,7 +123,7 @@ handleSubmit = ev => {
             onSubmit={this.handleSubmit}
           >
             <div role='alert'>
-              {error && <p className='red'>{error}</p>}
+              {/* {error && <p className='red'>{error}</p>} */}
             </div>
     
             <label htmlFor='registrationForm__user_name'>User Name</label>
