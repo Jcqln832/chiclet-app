@@ -3,16 +3,16 @@ import { Route, withRouter, Switch } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMoon } from '@fortawesome/free-solid-svg-icons'
 import apiContext from '../../apiContext';
-import config from '../../config';
+// import config from '../../config';
 import PrivateRoute from '../../Utils/PrivateRoute'
 import PublicOnlyRoute from '../../Utils/PublicOnlyRoute'
 import NavError from '../ErrorBoundaries/NavError';
-import AccountError from '../ErrorBoundaries/AccountError';
-import AppError from '../ErrorBoundaries/AppError';
-import MONTHS from '../../Utils/monthsList';
+// import AccountError from '../ErrorBoundaries/AccountError';
+// import AppError from '../ErrorBoundaries/AppError';
+// import MONTHS from '../../Utils/monthsList';
 import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
-import SingleMonth from '../month/month';
+// import SingleMonth from '../month/month';
 import TokenService from '../../services/token-service'
 import ItemApiService from '../../services/item-api-service'
 import LoginPage from '../../routes/LoginPage/LoginPage'
@@ -20,7 +20,7 @@ import RegistrationPage from '../../routes/RegistrationPage/RegistrationPage';
 import MonthsPage from '../../routes/MonthsPage/MonthsPage';
 import SingleMonthPage from '../../routes/SingleMonthPage/SingleMonthPage';
 import EditPage from '../../routes/EditPage/EditPage';
-import EditItem from '../EditItem/EditItem'
+// import EditItem from '../EditItem/EditItem'
 import Options from '../options/options';
 import NotFoundPage from '../../routes/NotFoundPage/NotFoundPage'
 import './app.css';
@@ -34,9 +34,9 @@ class App extends Component {
     error: null,
   }
 
-  componentDidMount() {
-    this.fetchItems()
-  }
+  // componentDidMount() {
+  //   this.fetchItems()
+  // }
 
   fetchItems = () => {
     this.clearError()

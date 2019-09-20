@@ -23,6 +23,10 @@ li, a, p {
   font-family: "Karla";
 }
 
+.red {
+  color: #d46966;
+}
+
 /* #root {
   background-image: linear-gradient(to bottom, #eaeaea, #dddfe1, #cfd4d9, #bfcacf, #afc0c3);
   background-repeat: no-repeat;

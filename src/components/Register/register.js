@@ -10,107 +10,97 @@ export default class Registration extends Component {
 
   state = { error: null }
 
+  handleSubmit = ev => {
+    ev.preventDefault()
+    const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]/;
+    const { user_name, password, password2 } = ev.target;
+    const userValid = user_name.value.length < 20;
+    let validPass1;
+    let validPass2;
+    let validPass3;
+    let validPass4;
+    let pwError = null;
+      
+    if (password.value.startsWith(' ') || password.value.endsWith(' ')) {
+      pwError = 'Password must not start or end with empty spaces'
+      validPass1 = false;
+    } else {
+      validPass1 =  true;
+    }
+    // console.log(validPass1)
 
-//   handleSubmit = ev => {
-//     ev.preventDefault()
-//     console.log('handlesubmit ran!')
-//     const { user_name, password, password2} = ev.target
-//     console.log(user_name.value);
-//     const userValid = user_name.value.length < 40
-//     console.log(userValid)
-//     // console.log(password.value);
-//     // console.log(password2.value);
-//     // console.log(password.value === password2.value)
-//     // console.log(password.value.length < 40);
-//     // console.log(password.value.length >= 8);
-//     // pwvalue = password.value === password2.value;
-//     // pwlength = password.value.length < 40;
-//     const pwValid = (password.value === password2.value) && (password.value.length < 40) && (password.value.length >= 8) ? true : false
-//     console.log(pwValid)
-    
-//     if(userValid && pwValid) {
-//         this.setState({
-//             error: null
-//         })
-//         const user = {
-//           id: this.props.usersLength + 1,
-//           user_name: user_name.value,
-//           password: password.value
-//         }
-//         this.props.createNewUser(user)
-//         this.props.doLoginRedirect()
-//     } else {
-//         // this.props.setLoggedIn(false)
-//         this.setState({
-//             error: "Invalid username or password. Please try again."
-//         })
-//     }
-// }
+    if (REGEX_UPPER_LOWER_NUMBER_SPECIAL.test(password.value) === false) {
+      pwError = 'Password must contain one upper case, lower case, number and special character'
+      validPass2 = false;
+    } else {
+      validPass2 =  true;
+    }
+    // console.log(validPass2)
 
-handleSubmit = ev => {
-  ev.preventDefault()
-  const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&])[\S]/;
-  const pwError = null;
-  const { user_name, password, password2 } = ev.target
-  const userValid = user_name.value.length < 20;
-  if (password.startsWith(' ') || password.endsWith(' ')) {
-    pwError = 'Password must not start or end with empty spaces'
-  }
-if (REGEX_UPPER_LOWER_NUMBER_SPECIAL.test(password) == false) {
-    pwError = 'Password must contain 1 upper case, lower case, number and special character'
- }
- if(!(password.value.length < 20) && (password.value.length >= 8)) {
-  pwError = "Passwords must be at least 8 characters and not more than 20 characters"
- }
- if(!password.value === password2.value) {
-   pwError = "Passwords must match"
- }
+  if(!(password.value.length < 20) && (password.value.length >= 8)) {
+      pwError = "Passwords must be at least 8 characters and not more than 20 characters"
+      validPass3 = false;
+    } else {
+      validPass3 =  true;
+    }
+    // console.log(validPass3)
 
-  const pwValid = (password.value === password2.value) && (password.value.length < 20) && (password.value.length >= 8) ? true : false
+  if(!password.value === password2.value) {
+    pwError = "Passwords must match"
+      validPass4 = false;
+    } else {
+      validPass4 =  true;
+    }
+    // console.log(validPass4)
 
-  if(userValid && pwValid) {
-    this.setState({ error: null })
-      AuthApiService.postUser({
-       user_name: user_name.value,
-       password: password.value,
-      })
-      .then(res => {
-        user_name.value = ''
-        password.value = ''
-        TokenService.saveAuthToken(res.authToken)
-        this.props.doRedirect()
-      })
+    // const pwValid = (password.value === password2.value) && (password.value.length < 20) && (password.value.length >= 8) ? true : false
+  const pwValid = validPass1 === true && validPass2 === true && validPass3 === true && validPass4 === true ? true : false
+  // console.log(pwValid);
 
-      // AuthApiService.postLogin({
-      //   user_name: user_name.value,
-      //   password: password.value,
-      // })
-      //   .then(res => {
+    if(userValid && pwValid) {
+      this.setState({ error: null })
+        AuthApiService.postUser({
+        user_name: user_name.value,
+        password: password.value,
+        })
+        .then(res => {
+          user_name.value = ''
+          password.value = ''
+          TokenService.saveAuthToken(res.authToken)
+          this.props.doRedirect()
+        })
+
+        // AuthApiService.postLogin({
+        //   user_name: user_name.value,
+        //   password: password.value,
+        // })
+        //   .then(res => {
+        //     user_name.value = ''
+        //     password.value = ''
+        //     TokenService.saveAuthToken(res.authToken)
+        //     this.props.doRedirect()
+        //   })
+
+
+      //   .then(user => {
       //     user_name.value = ''
       //     password.value = ''
-      //     TokenService.saveAuthToken(res.authToken)
-      //     this.props.doRedirect()
-      //   })
-
-
-    //   .then(user => {
-    //     user_name.value = ''
-    //     password.value = ''
-    //     this.props.onRegistrationSuccess()
-    //  })
-      .catch(res => {
-        this.setState({ error: res.error })
+      //     this.props.onRegistrationSuccess()
+      //  })
+        .catch(res => {
+          this.setState({ error: res.error })
+        })
+    } else {
+      this.setState({
+        // error: "Passwords must match. Password must be between 8 and 20 charaters. Username must be less than 20 characters. Please try again."
+        error: pwError
       })
-  } else {
-    this.setState({
-      error: "Passwords must match. Password must be between 8 and 20 charaters. Username must be less than 20 characters. Please try again."
-    })
+    }
   }
-}
-
 
   render() {
     const { error } = this.state
+
     return (
       <>
       <header role="banner">
@@ -123,7 +113,7 @@ if (REGEX_UPPER_LOWER_NUMBER_SPECIAL.test(password) == false) {
             onSubmit={this.handleSubmit}
           >
             <div role='alert'>
-              {/* {error && <p className='red'>{error}</p>} */}
+              {error && <p className='red'>{error}</p>}
             </div>
     
             <label htmlFor='registrationForm__user_name'>User Name</label>
