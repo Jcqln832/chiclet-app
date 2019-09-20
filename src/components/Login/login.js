@@ -18,7 +18,7 @@ export default class LoginForm extends Component {
 
     AuthApiService.postLogin({
       user_name: user_name.value,
-        password: password.value,
+      password: password.value,
     })
       .then(res => {
         user_name.value = ''

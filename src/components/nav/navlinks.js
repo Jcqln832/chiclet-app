@@ -16,9 +16,9 @@ const NavLinks = (props) => {
                             </button>
                         </li>
                         <li key={2}>
-                            <NavLink to={`/options`}>
+                            {/* <NavLink to={`/options`}>
                                 Options
-                            </NavLink>
+                            </NavLink> */}
                         </li>
                     </>
                 )

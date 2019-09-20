@@ -13,7 +13,6 @@ import MONTHS from '../../Utils/monthsList';
 import AppNav from '../nav/nav';
 import Landing from '../landing/landing';
 import SingleMonth from '../month/month';
-// import EditItem from '../EditItem/edititem';
 import TokenService from '../../services/token-service'
 import ItemApiService from '../../services/item-api-service'
 import LoginPage from '../../routes/LoginPage/LoginPage'
@@ -173,7 +172,7 @@ class App extends Component {
             />
           </Switch>
           </main>
-          <footer role="contentinfo">Footer</footer>
+          <footer role="contentinfo"></footer>
         </div>
       </apiContext.Provider>
     )

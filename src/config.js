@@ -1,5 +1,5 @@
 export default {
-    API_ENDPOINT: 'https://boiling-shelf-87186.herokuapp.com/api',
+    API_ENDPOINT: 'http://localhost:8000/api',
     TOKEN_KEY: 'chiclet-client-auth-token',
 }
 

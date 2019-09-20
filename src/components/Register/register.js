@@ -57,11 +57,24 @@ handleSubmit = ev => {
        user_name: user_name.value,
        password: password.value,
       })
-      .then(user => {
-        user_name.value = ''
-        password.value = ''
-        this.props.onRegistrationSuccess()
-     })
+      
+      // AuthApiService.postLogin({
+      //   user_name: user_name.value,
+      //   password: password.value,
+      // })
+      //   .then(res => {
+      //     user_name.value = ''
+      //     password.value = ''
+      //     TokenService.saveAuthToken(res.authToken)
+      //     this.props.doRedirect()
+      //   })
+
+
+    //   .then(user => {
+    //     user_name.value = ''
+    //     password.value = ''
+    //     this.props.onRegistrationSuccess()
+    //  })
       .catch(res => {
         this.setState({ error: res.error })
       })

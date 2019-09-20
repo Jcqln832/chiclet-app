@@ -80,10 +80,16 @@ exports[`General App test renders the UI as expected 1`] = `
               </em>
               <ul>
                 <li>
-                  User Name: harryP
+                  User Name: 
+                  <b>
+                    harryP
+                  </b>
                 </li>
                 <li>
-                  Password: secretPW1*
+                  Password: 
+                  <b>
+                    secretPW1!
+                  </b>
                 </li>
               </ul>
             </li>
