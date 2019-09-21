@@ -6,8 +6,10 @@ exports[`Year tests renders the UI as expected 1`] = `
 >
   <h2 />
   <button
+    aria-label="arrow button next year"
     className="btn-arrow"
     onClick={[Function]}
+    title="advance year"
   >
     <svg
       aria-hidden="true"

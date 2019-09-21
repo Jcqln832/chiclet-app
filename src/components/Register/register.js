@@ -37,7 +37,7 @@ export default class Registration extends Component {
     }
     // console.log(validPass2)
 
-  if(!(password.value.length < 20) && (password.value.length >= 8)) {
+  if ((password.value.length > 20) || (password.value.length < 8)) {
       pwError = "Passwords must be at least 8 characters and not more than 20 characters"
       validPass3 = false;
     } else {
@@ -45,7 +45,7 @@ export default class Registration extends Component {
     }
     // console.log(validPass3)
 
-  if(!password.value === password2.value) {
+  if (password.value != password2.value) {
     pwError = "Passwords must match"
       validPass4 = false;
     } else {

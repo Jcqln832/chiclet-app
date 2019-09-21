@@ -55,11 +55,13 @@ exports[`General App test renders the UI as expected 1`] = `
         <div
           className="intro"
         >
-          <h3>
+          <h2
+            className="intro__heading"
+          >
             How to use Chiclet
-          </h3>
+          </h2>
           <p>
-            This app allows you to plan and keep track of your year by month. Add special events, goal deadlines, or focus themes to the months and the app provides a view your plans for the entire year. Alternatively, the app can be used as an accomplishment record keeper rather than a planner of future milestones. Either way, you have an interactive bird's eye view of the year.
+            This app allows you to plan and keep track of your year by month. Add special events, goal deadlines, or focus themes to the months and the app provides a view of your plans for the entire year. Alternatively, the app can be used as an accomplishment record keeper rather than a planner of future milestones. Either way, you have an interactive bird's eye view of the year.
           </p>
           <ul>
             <li>
@@ -190,8 +192,6 @@ exports[`General App test renders the UI as expected 1`] = `
   </main>
   <footer
     role="contentinfo"
-  >
-    Footer
-  </footer>
+  />
 </div>
 `;
