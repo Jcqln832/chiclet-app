@@ -10,7 +10,7 @@ export default function SingleMonthItems(props) {
         <>
         {props.monthItems.map(item =>
              <li key={item.id} className={item.completed ? "complete" : "incomplete"}>
-                <Link to={`/edit/${item.id}`} className="edit-btn">
+                <Link to={`/edit/${item.id}`} className="edit-btn" title="edit item">
                     <FontAwesomeIcon icon={faEdit} size={"lg"}/>
                 </Link>
                 {item.content}

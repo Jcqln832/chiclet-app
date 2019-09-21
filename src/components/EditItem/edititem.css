@@ -38,7 +38,7 @@
     font-size: 14px;
     font-weight: bold;
     display: block;
-    background-color: #eaeaea;
+    background-color: #f5f8fb;
     width: 25%;
     margin: 25px 0px 15px 0px;
     padding: 10px 0px;
@@ -55,8 +55,8 @@
     font-size: 1em;
     margin-top: 35px;
     padding: 10px 0px;
-    background-color: #eaeaea;
-    color: #d46966;
-    border: 2px solid  #d46966;
+    background-color: #fff2f2;
+    color: #96332f;
+    border: 2px solid  #96332f;
     cursor: pointer;
 }

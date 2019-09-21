@@ -147,7 +147,7 @@ class EditItem extends Component {
     <>
       <div className="container--title">
         <h2 className="month__year">
-            <span className="arrow-back" onClick={()=>this.doRedirect()}>
+            <span className="arrow-back" title="previous page" onClick={()=>this.doRedirect()}>
               <FontAwesomeIcon icon={faChevronLeft} size={"lg"} />
             </span>
             {this.props.month}

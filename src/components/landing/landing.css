@@ -1,68 +1,67 @@
 .container--intro {
-    line-height: 1.5;
-    font-size: 18px;
-    flex-basis: 100%;
+  line-height: 1.5;
+  font-size: 18px;
+  flex-basis: 100%;
 }
   
-  .intro {
-    margin: 0 auto;
-    padding: 1em;
-    font-family: "Karla";
+.intro {
+  margin: 0 auto;
+  padding: 1em;
+  font-family: "Karla";
+}
 
-  }
+.intro__heading {
+  font-size: 22px;
+  text-align: left;
+  margin: 40px 0px 25px 0px;
+}
+
+.intro > ul {
+  padding-left: 20px;
+}
+
+.container--btn {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 75px 0 75px 0;
+}
   
-  .intro > h3 {
-    margin-top: 35px;
-  }
+.btn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: lightgray;
+  padding: 12px 24px;
+  color:black;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  flex-basis: 1;
+  transition: all .2s ease-in-out;
+  box-shadow: 0px 2px 10px rgba(10, 23, 29, 0.15);
+}
 
-  .intro > ul {
-    padding-left: 20px;
-  }
-  
-  .container--btn {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin: 75px 0 75px 0;
-  }
-  
-  .btn {
-    display: inline-block;
-    border-radius: 4px;
-    background-color: lightgray;
-    padding: 12px 24px;
-    color:black;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none;
-    flex-basis: 1;
-    transition: all .2s ease-in-out;
-    box-shadow: 0px 2px 10px rgba(10, 23, 29, 0.15);
-  }
+.btn:hover {
+  transform: scale(1.025);
+  box-shadow: 0px 2px 12px rgba(10, 23, 29, 0.20);
+}
 
-  .btn:hover {
-    transform: scale(1.025);
-    box-shadow: 0px 2px 12px rgba(10, 23, 29, 0.20);
+.btn--login {
+  background: #f3de8a;
+  color: #252422;
+}
 
-  }
+.btn--register {
+  color: #252422;
+  background: #c0e0de;
+}
 
-  .btn--login {
-    background: #f3de8a;
-    color: #252422;
-  }
-  
-  .btn--register {
-    color: #252422;
-    background: #c0e0de;
-  }
-
-  .container--landing {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    /* margin: -1em 0 0 -1em; */
-    justify-content: center;
-  }
+.container--landing {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
   
   /* .container--month {
     display: block;
@@ -78,7 +77,7 @@
     min-height: 250px;
   } */ 
 
-  /**** MEDIA QUERIES ****/
+/**** MEDIA QUERIES ****/
 
 @media screen and (min-width: 768px) {
   .intro {

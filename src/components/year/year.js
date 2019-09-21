@@ -14,12 +14,12 @@ export default function Year(props) {
                 return (
                     <header role="banner">
                         {props.prevButton &&
-                            <button className="btn-arrow" onClick = {value.decrementYear}>
+                            <button title="previous year" aria-label="arrow button previous year" className="btn-arrow" onClick = {value.decrementYear}>
                             <FontAwesomeIcon icon={faArrowLeft} size={"lg"}/>
                        </button> 
                         }
                         <h2>{value.year}</h2>
-                        <button className="btn-arrow" onClick = {value.incrementYear} >
+                        <button className="btn-arrow" title="advance year" aria-label="arrow button next year" onClick = {value.incrementYear} >
                             <FontAwesomeIcon icon={faArrowRight} size={"lg"} />
                         </button>
                     </header>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import apiContext from '../../apiContext'
 import EditItem from '../../components/EditItem/EditItem'
-import AppError from '../../components/ErrorBoundaries/AppError';
+// import AppError from '../../components/ErrorBoundaries/AppError';
 
 export default class EditPage extends Component {
   static contextType = apiContext;

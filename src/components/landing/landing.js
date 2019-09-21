@@ -10,8 +10,8 @@ export default function Landing(props) {
 
             <section className="container--intro">
                 <div className="intro">
-                    <h3>How to use Chiclet</h3>
-                    <p>This app allows you to plan and keep track of your year by month. Add special events, goal deadlines, or focus themes to the months and the app provides a view your plans for the entire year. Alternatively, the app can be used as an accomplishment record keeper rather than a planner of future milestones. Either way, you have an interactive bird's eye view of the year.
+                    <h2 className="intro__heading">How to use Chiclet</h2>
+                    <p>This app allows you to plan and keep track of your year by month. Add special events, goal deadlines, or focus themes to the months and the app provides a view of your plans for the entire year. Alternatively, the app can be used as an accomplishment record keeper rather than a planner of future milestones. Either way, you have an interactive bird's eye view of the year.
                     </p>
                     <ul>
                         <li>Log out and view options in the top right.</li>

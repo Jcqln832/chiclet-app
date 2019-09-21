@@ -12,7 +12,7 @@ export default function SingleMonth(props) {
         <>
             <div className="container--title">
             <h2 className="month__year">
-                <span className="arrow-back" onClick={()=>props.doRedirect()}><FontAwesomeIcon icon={faChevronLeft} size={"lg"} /></span>
+                <span className="arrow-back" title="previous page" onClick={()=>props.doRedirect()}><FontAwesomeIcon icon={faChevronLeft} size={"lg"} /></span>
                 {props.year}
             </h2>
             </div>
